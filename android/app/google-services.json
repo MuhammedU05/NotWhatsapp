@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "984079065874",
+    "project_id": "notwhatsapp-1915f",
+    "storage_bucket": "notwhatsapp-1915f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984079065874:android:6b308d7deae912e22e09cb",
+        "android_client_info": {
+          "package_name": "com.example.not_whatsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW2d0O6Q7VkY5P2WEAabUMOVN44TrBJtE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

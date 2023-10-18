@@ -53,7 +53,7 @@ class _myChatScreenState extends State<myChatScreen> {
         ],
         leading: Row(
           children: [
-            IconButton(
+            IconButton( 
                 splashRadius: 30,
                 alignment: Alignment.center,
                 // padding: EdgeInsets.all(1),
@@ -182,64 +182,64 @@ class ChatScreenState extends State<ChatScreen> {
               alignment: Alignment.bottomCenter,
               child: Row(
                 children: <Widget>[
-                  Expanded(
-                    child: TextField(
-                        textAlign: TextAlign.justify,
-                        textAlignVertical: TextAlignVertical.top,
-                        keyboardType: TextInputType.text,
-                        // minLines: 1,
-                        maxLines: null,
-                        style: GoogleFonts.alegreya(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                        controller: _textController,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.black12,
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                        onChanged: (String value) {
-                          if (_textController.text != '') {
-                            setState(() {
-                              writeMessage = false;
-                            });
-                          } else {
-                            setState(() {
-                              writeMessage = true;
-                            });
-                          }
-                        }),
-                  ),
-                  IconButton(
-                      alignment: Alignment.topCenter,
-                      padding: const EdgeInsets.only(bottom: 30),
-                      onPressed: () {
-                        addMessages(true);
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        scrollController.animateTo(
-                          scrollController.position.maxScrollExtent,
-                          curve: Curves.easeOut,
-                          duration: const Duration(milliseconds: 300),
-                        );
-                      },
-                      icon: writeMessage
-                          ? const Icon(
-                              Icons.insert_photo,
-                              color: Colors.black87,
-                              size: 37,
-                            )
-                          : const Icon(
-                              Icons.send,
-                              color: Colors.black87,
-                              size: 37,
-                            )),
+                  // Expanded(
+                  //   child: TextField(
+                  //       textAlign: TextAlign.justify,
+                  //       textAlignVertical: TextAlignVertical.top,
+                  //       keyboardType: TextInputType.text,
+                  //       // minLines: 1,
+                  //       maxLines: null,
+                  //       // style: GoogleFonts.alegreya(
+                  //       //   fontSize: 20,
+                  //       //   fontWeight: FontWeight.w600,
+                  //       //   color: Colors.black,
+                  //       // ),
+                  //       controller: _textController,
+                  //       decoration: InputDecoration(
+                  //         filled: true,
+                  //         fillColor: Colors.black12,
+                  //         border: OutlineInputBorder(
+                  //           borderSide: const BorderSide(
+                  //             width: 2,
+                  //           ),
+                  //           borderRadius: BorderRadius.circular(50),
+                  //         ),
+                  //       ),
+                  //       onChanged: (String value) {
+                  //         if (_textController.text != '') {
+                  //           setState(() {
+                  //             writeMessage = false;
+                  //           });
+                  //         } else {
+                  //           setState(() {
+                  //             writeMessage = true;
+                  //           });
+                  //         }
+                  //       }),
+                  // ),
+                  // IconButton(
+                  //     alignment: Alignment.topCenter,
+                  //     padding: const EdgeInsets.only(bottom: 30),
+                  //     onPressed: () {
+                  //       // addMessages(true);
+                  //       // FocusScope.of(context).requestFocus(FocusNode());
+                  //       // scrollController.animateTo(
+                  //       //   scrollController.position.maxScrollExtent,
+                  //       //   curve: Curves.easeOut,
+                  //       //   duration: const Duration(milliseconds: 300),
+                  //       // );
+                  //     },
+                  //     icon: writeMessage
+                  //         ? const Icon(
+                  //             Icons.insert_photo,
+                  //             color: Colors.black87,
+                  //             size: 37,
+                  //           )
+                  //         : const Icon(
+                  //             Icons.send,
+                  //             color: Colors.black87,
+                  //             size: 37,
+                  //           )),
                 ],
               ),
             ),
