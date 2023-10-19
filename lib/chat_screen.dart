@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'main.dart';
 
@@ -137,6 +139,8 @@ class _myChatScreenState extends State<myChatScreen> {
 }
 
 class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
+
   @override
   State createState() => ChatScreenState();
 }
@@ -144,6 +148,8 @@ class ChatScreen extends StatefulWidget {
 class ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
+  bool _isHintTextVisible = true;
+  final FocusNode _focusNode = FocusNode();
 
   void _handleSubmitted(String text) {
     _textController.clear();
@@ -155,133 +161,94 @@ class ChatScreenState extends State<ChatScreen> {
     });
   }
 
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(() {
+      setState(() {
+        _isHintTextVisible =
+            _textController.text.isEmpty && _focusNode.hasFocus;
+        _isHintTextVisible == false ? print('Changed') : print('Changed 2');
+      });
+    });
+  }
+
   Widget _buildTextComposer() {
-    return Stack(
-      alignment: Alignment.topCenter,
-      clipBehavior: Clip.antiAlias,
-      children: <Widget>[
-        Container(
-          alignment: Alignment.bottomCenter,
-          margin: const EdgeInsets.only(top: 60),
-          child: Container(
-            margin: const EdgeInsets.only(top: 60),
-            constraints: const BoxConstraints(
-              minHeight: 70,
-              maxHeight: 78,
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            decoration: const BoxDecoration(
-              color: Color(0xFF4A78FF),
-              border: Border(
-                top: BorderSide(
-                  color: Colors.black87,
-                ),
+    return Container(
+      padding: EdgeInsets.all(8.0),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black38,
+                borderRadius: BorderRadius.circular(25.0),
               ),
-            ),
-            child: Align(
-              alignment: Alignment.bottomCenter,
               child: Row(
                 children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.emoji_emotions_outlined),
+                    onPressed: () {},
+                  ),
+                  SizedBox(width: 10.0),
                   Expanded(
                     child: TextField(
-                        textAlign: TextAlign.justify,
-                        textAlignVertical: TextAlignVertical.top,
-                        keyboardType: TextInputType.text,
-                        // minLines: 1,
-                        maxLines: null,
-                        style: GoogleFonts.alegreya(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                        controller: _textController,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.black12,
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                        onChanged: (String value) {
-                          if (_textController.text != '') {
-                            setState(() {
-                              writeMessage = false;
-                            });
-                          } else {
-                            setState(() {
-                              writeMessage = true;
-                            });
-                          }
-                        }),
+                      controller: _textController,
+                      onSubmitted: _textController.text.isNotEmpty? _handleSubmitted:null,
+                      decoration: InputDecoration(
+                        hintText: "Message",
+                        border: InputBorder.none,
+                        // errorText: _validate ? "Value Can't Be Empty" : null
+                      ),
+                    ),
                   ),
                   IconButton(
-                      alignment: Alignment.topCenter,
-                      padding: const EdgeInsets.only(bottom: 30),
-                      onPressed: () {
-                        addMessages(true);
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        scrollController.animateTo(
-                          scrollController.position.maxScrollExtent,
-                          curve: Curves.easeOut,
-                          duration: const Duration(milliseconds: 300),
-                        );
-                      },
-                      icon: writeMessage
-                          ? const Icon(
-                              Icons.insert_photo,
-                              color: Colors.black87,
-                              size: 37,
-                            )
-                          : const Icon(
-                              Icons.send,
-                              color: Colors.black87,
-                              size: 37,
-                            )),
+                    icon: Icon(
+                      Icons.attach_file,
+                      color: Colors.black54,
+                    ),
+                    onPressed: () {},
+                  ),
+                  _isHintTextVisible == false
+                      ? IconButton(
+                          onPressed: () {}, icon: Icon(Icons.camera_alt))
+                      : Container()
+                  // IconButton(onPressed: (){
+                  //   _textController.text.isEmpty
+                  //         ? print
+                  //         : _handleSubmitted(_textController.text);
+                  // },
+                  // icon: Icon(Icons.send)
+                  // )
                 ],
               ),
             ),
           ),
-        ),
-      ],
+          SizedBox(width: 10.0),
+          FloatingActionButton(
+                  onPressed: () {},
+                  child: IconButton(
+                      onPressed: () {
+                        _textController.text.isEmpty
+                            ? print
+                            : _handleSubmitted(_textController.text);
+                      },
+                      icon: Icon(Icons.send)),
+                  backgroundColor: themeColorGreen,
+                ),
+          FloatingActionButton(
+                  onPressed: () {},
+                  child: IconButton(
+                      onPressed: () {
+                        // voice recorder function
+                      },
+                      icon: Icon(Icons.keyboard_voice)),
+                  backgroundColor: themeColorGreen,
+                ),
+          
+        ],
+      ),
     );
-
-    // Container(
-    //     decoration: BoxDecoration(
-    //       color: Colors.black12,
-    //       borderRadius: BorderRadius.circular(20)
-    //     ),
-    //     margin: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 8.0),
-    //     child: Row(
-    //       children: <Widget>[
-    //         IconButton(
-    //           splashRadius: 25,
-    //           color: themeColorGreen,
-    //           onPressed: (){
-
-    //           },
-    //           icon: Icon(Icons.mood)
-    //           ),
-    //         Flexible(
-    //           child: SizedBox(
-    //             child: TextField(
-    //               controller: _textController,
-    //               onSubmitted: _handleSubmitted,
-    //               decoration: InputDecoration.collapsed(hintText: "Message",),
-    //             ),
-    //           ),
-    //         ),
-    //         IconButton(
-    //           color: themeColorGreen,
-    //           splashRadius: 0.2,
-    //           icon: Icon(Icons.send),
-    //           onPressed: () => _handleSubmitted(_textController.text)
-    //         ),
-    //       ],
-    //     ),
-    // );
   }
 
   @override
@@ -370,7 +337,7 @@ class ChatScreenState extends State<ChatScreen> {
         children: <Widget>[
           Flexible(
             child: ListView.builder(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               reverse: true,
               itemBuilder: (_, int index) => _messages[index],
               itemCount: _messages.length,
@@ -384,8 +351,12 @@ class ChatScreenState extends State<ChatScreen> {
   }
 }
 
+Show(bool isHintTextVisible) {
+  print(isHintTextVisible);
+}
+
 class ChatMessage extends StatelessWidget {
-  ChatMessage({required this.text});
+  const ChatMessage({super.key, required this.text});
   final String text;
 
   @override
