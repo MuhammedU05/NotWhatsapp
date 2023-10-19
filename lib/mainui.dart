@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'package:not_whatsapp/createnewaccount.dart';
+
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
@@ -94,7 +96,7 @@ class _MainAppState extends State<MainApp> {
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
                       color: Color.fromRGBO(255, 255, 255, 1)),
-                      maxLines: 1,
+                  maxLines: 1,
                 )),
                 Tab(
                     icon: AutoSizeText(
@@ -104,7 +106,7 @@ class _MainAppState extends State<MainApp> {
                       fontWeight: FontWeight.w600,
                       fontSize: 19,
                       color: Color.fromRGBO(255, 255, 255, 1)),
-                      maxLines: 1,
+                  maxLines: 1,
                 )),
                 Tab(
                     icon: AutoSizeText(
@@ -114,7 +116,7 @@ class _MainAppState extends State<MainApp> {
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
                       color: Color.fromRGBO(255, 255, 255, 1)),
-                      maxLines: 1,
+                  maxLines: 1,
                 )),
               ],
             ),
@@ -170,8 +172,7 @@ class _MainAppState extends State<MainApp> {
                                                 builder:
                                                     (BuildContextContext) =>
                                                         // const myChatScreen()
-                                                        ChatScreen()
-                                                        ));
+                                                        ChatScreen()));
                                       },
                                     ),
                                   ],
@@ -201,8 +202,15 @@ class _MainAppState extends State<MainApp> {
                         // ),
                       ],
                     ),
-              const Text('Status coming soon'),
-
+              // const Text('Status coming soon'),
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => createnewaccount())));
+                  },
+                  icon: Icon(Icons.abc)),
               const Text('Calls coming soon')
 
               // ChatList(),
