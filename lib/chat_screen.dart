@@ -1,6 +1,7 @@
 // ignore_for_file: unused_element
 
 import 'package:flutter/material.dart';
+import 'package:not_whatsapp/profile_page.dart';
 import 'main.dart';
 
 // ignore: camel_case_types
@@ -148,6 +149,7 @@ class ChatScreen extends StatefulWidget {
 class ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
+  final TextEditingController _inputValue = TextEditingController();
   bool _isHintTextVisible = true;
   final FocusNode _focusNode = FocusNode();
 
@@ -194,7 +196,12 @@ class ChatScreenState extends State<ChatScreen> {
                   Expanded(
                     child: TextField(
                       controller: _textController,
-                      onSubmitted: _textController.text.isNotEmpty? _handleSubmitted:null,
+                      onSubmitted: _textController.text.isNotEmpty
+                          ? _handleSubmitted
+                          : null,
+                      onChanged: (changedValue) {
+                        _inputValue.text = changedValue;
+                      },
                       decoration: InputDecoration(
                         hintText: "Message",
                         border: InputBorder.none,
@@ -209,10 +216,15 @@ class ChatScreenState extends State<ChatScreen> {
                     ),
                     onPressed: () {},
                   ),
-                  _isHintTextVisible == false
-                      ? IconButton(
-                          onPressed: () {}, icon: Icon(Icons.camera_alt))
-                      : Container()
+                  // IconButton(
+                  //   icon: Icon(
+                  //     Icons.attach_file,
+                  //     color: Colors.black54,
+                  //   ),
+                  //   onPressed: () {},
+                  // ),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.camera_alt)),
+
                   // IconButton(onPressed: (){
                   //   _textController.text.isEmpty
                   //         ? print
@@ -226,26 +238,25 @@ class ChatScreenState extends State<ChatScreen> {
           ),
           SizedBox(width: 10.0),
           FloatingActionButton(
-                  onPressed: () {},
-                  child: IconButton(
-                      onPressed: () {
-                        _textController.text.isEmpty
-                            ? print
-                            : _handleSubmitted(_textController.text);
-                      },
-                      icon: Icon(Icons.send)),
-                  backgroundColor: themeColorGreen,
-                ),
-          FloatingActionButton(
-                  onPressed: () {},
-                  child: IconButton(
-                      onPressed: () {
-                        // voice recorder function
-                      },
-                      icon: Icon(Icons.keyboard_voice)),
-                  backgroundColor: themeColorGreen,
-                ),
-          
+            onPressed: () {},
+            child: IconButton(
+                onPressed: () {
+                  _textController.text.isEmpty
+                      ? print
+                      : _handleSubmitted(_textController.text);
+                },
+                icon: Icon(Icons.send)),
+            backgroundColor: themeColorGreen,
+          ),
+          // FloatingActionButton(
+          //   onPressed: () {},
+          //   child: IconButton(
+          //       onPressed: () {
+          //         // voice recorder function
+          //       },
+          //       icon: Icon(Icons.keyboard_voice)),
+          //   backgroundColor: themeColorGreen,
+          // ),
         ],
       ),
     );
@@ -303,33 +314,36 @@ class ChatScreenState extends State<ChatScreen> {
           ],
         ),
         title: GestureDetector(
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Column(
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.red,
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          child: SizedBox(
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Column(
                   children: [
-                    Text('Name', style: TextStyle(fontSize: 25)),
-                    Text(
-                      'Online',
-                      style: TextStyle(fontSize: 15),
+                    CircleAvatar(
+                      backgroundColor: Colors.red,
                     ),
                   ],
                 ),
-              )
-            ],
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Name', style: TextStyle(fontSize: 25)),
+                      Text(
+                        'Online',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
           onTap: () {
             print('Profile');
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => profilePage()) );
           },
         ),
       ),
@@ -351,9 +365,9 @@ class ChatScreenState extends State<ChatScreen> {
   }
 }
 
-Show(bool isHintTextVisible) {
-  print(isHintTextVisible);
-}
+// Show(bool isHintTextVisible) {
+//   print(isHintTextVisible);
+// }
 
 class ChatMessage extends StatelessWidget {
   const ChatMessage({super.key, required this.text});
