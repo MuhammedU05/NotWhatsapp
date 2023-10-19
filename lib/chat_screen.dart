@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:not_whatsapp/Settingspage.dart';
 import 'main.dart';
+import './Settingspage.dart';
 
 // ignore: camel_case_types
 class myChatScreen extends StatefulWidget {
@@ -53,7 +55,7 @@ class _myChatScreenState extends State<myChatScreen> {
         ],
         leading: Row(
           children: [
-            IconButton( 
+            IconButton(
                 splashRadius: 30,
                 alignment: Alignment.center,
                 // padding: EdgeInsets.all(1),
@@ -319,7 +321,10 @@ class ChatScreenState extends State<ChatScreen> {
                 // const PopupMenuItem(child: Text('New Broadcast')),
                 // const PopupMenuItem(child: Text('Linked Devices')),
                 // const PopupMenuItem(child: Text('Starred Messages')),
-                const PopupMenuItem(child: Text('Settings')),
+                PopupMenuItem(
+                  child: Text('Settings'),
+                
+                ),
               ];
             },
           ),
