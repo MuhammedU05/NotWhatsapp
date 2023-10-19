@@ -1,8 +1,8 @@
 // ignore_for_file: unused_element
 
 import 'package:flutter/material.dart';
+import 'package:not_whatsapp/profile_page.dart';
 import 'main.dart';
-import './Settingspage.dart';
 
 // ignore: camel_case_types
 class myChatScreen extends StatefulWidget {
