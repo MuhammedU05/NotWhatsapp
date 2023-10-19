@@ -6,7 +6,7 @@ class profilePage extends StatelessWidget {
   const profilePage({super.key});
 
   @override
-  Widget build(BuildContext profile_Page) {
+  Widget build(BuildContext context) {
     return Column(
       children: [
         Row(
@@ -14,7 +14,7 @@ class profilePage extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.pop(profile_Page);
+                Navigator.pop(context);
               },
             )
           ],
