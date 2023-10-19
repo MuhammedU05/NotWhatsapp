@@ -10,6 +10,7 @@ dependencies:
   firebase_core: ^2.18.0
   flutter:
     sdk: flutter
+  auto_size_text: ^3.0.0
     # overlay_support: latest_version
 
 dev_dependencies:
@@ -19,3 +20,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+assets:
+ - assets/
