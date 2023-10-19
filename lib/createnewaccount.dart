@@ -14,7 +14,7 @@ class createnewaccount extends StatelessWidget {
             width: 200,
             height: 150,
             decoration: BoxDecoration(color: Colors.black,borderRadius: BorderRadius.circular(50.0),
-          ),child: Image.asset('assets/whatsapp.png'),
+          ),child: Image.asset('assets/pngwing.com.png'),
             
           ),
           Container(
