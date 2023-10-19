@@ -3,6 +3,7 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 int addChatMessage = 0;
 int number = 0;
@@ -86,31 +87,34 @@ class _MainAppState extends State<MainApp> {
                   size: 35,
                 )),
                 Tab(
-                    icon: Text(
+                    icon: AutoSizeText(
                   'CHATS',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
                       color: Color.fromRGBO(255, 255, 255, 1)),
+                      maxLines: 1,
                 )),
                 Tab(
-                    icon: Text(
+                    icon: AutoSizeText(
                   'STATUS',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 19,
                       color: Color.fromRGBO(255, 255, 255, 1)),
+                      maxLines: 1,
                 )),
                 Tab(
-                    icon: Text(
+                    icon: AutoSizeText(
                   'CALLS',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
                       color: Color.fromRGBO(255, 255, 255, 1)),
+                      maxLines: 1,
                 )),
               ],
             ),
