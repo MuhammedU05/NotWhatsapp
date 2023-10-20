@@ -18,6 +18,7 @@ class _myChatScreenState extends State<myChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        
         titleSpacing: 0,
         toolbarHeight: 70,
         backgroundColor: themeColorGreen,

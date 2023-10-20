@@ -16,7 +16,7 @@ class _ProfilepicpageState extends State<Profilepicpage> {
           color: Colors.black,
         ),
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         title: Center(
             child: Text(
           "Edit Profile",

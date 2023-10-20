@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+// import 'dart:math' as math;
 import 'main.dart';
 
 class profilePage extends StatelessWidget {
@@ -12,20 +12,15 @@ class profilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    body: CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          automaticallyImplyLeading: false,
-          floating: true,
-          backgroundColor: themeColorGreen,
-          toolbarHeight: 300,
-          flexibleSpace: const FlexibleSpaceBar(
-            centerTitle: true,
+    appBar: AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: themeColorGreen,
+      toolbarHeight: 350,
+      centerTitle: true,
             title: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 40),
+                // SizedBox(height: 40),
                 CircleAvatar(
                   maxRadius: 80,
                   backgroundColor: Colors.red,
@@ -36,19 +31,29 @@ class profilePage extends StatelessWidget {
                   fontSize: 22,
                   fontWeight: FontWeight.w500
                 )),
-                SizedBox(height: 10,),
+                SizedBox(height: 10),
                 Text('+91 987654321',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500
                 ),),
+                SizedBox(height: 15,),
+                // SizedBox(height: 20,)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    IconButton(onPressed: (){
+                      Navigator.pop(context);
+                  }, icon: Icon(Icons.message),iconSize: 40,),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.call),iconSize: 40,),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.video_call),iconSize: 40,),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.search),iconSize: 40,),
+                  ],
+                )
               ],
             ),
-          ),
-        ),
-        
-      ],
-    ),
+    )
     );
   }
 }

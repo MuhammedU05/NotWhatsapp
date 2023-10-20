@@ -24,11 +24,12 @@ class _createnewaccountState extends State<createnewaccount> {
             width: 100,
             height: 100,
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: Colors.transparent,
               borderRadius: BorderRadius.circular(50.0),
             ),
-            child: Image.asset('assets/WhatsApp Logo PNG Vector (EPS) Free Download.png',
-            scale: BorderSide.strokeAlignOutside,),
+            child: Image.asset('assets/pngwing.com.png',
+            // scale: BorderSide.strokeAlignOutside
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 25),
@@ -38,7 +39,7 @@ class _createnewaccountState extends State<createnewaccount> {
             ),
           ),
           Container(
-            color: Color(0xFFF6F7F8),
+            color: Colors.transparent,
             width: 400,
             margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
             padding: EdgeInsets.all(16),
@@ -71,7 +72,7 @@ class _createnewaccountState extends State<createnewaccount> {
           ),
           if (isMobileNumberEntered)
             Container(
-              color: Color.fromARGB(255, 245, 246, 245),
+              color: Colors.transparent,
               width: 400,
               margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
               padding: EdgeInsets.all(16),
