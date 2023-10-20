@@ -72,10 +72,10 @@ class _MainAppState extends State<MainApp> {
                         // const PopupMenuItem(child: Text('Linked Devices')),
                         // const PopupMenuItem(child: Text('Starred Messages')),
                         PopupMenuItem(
-                          child: Text('Settings'),
+                          child: const Text('Settings'),
                           onTap: () => Navigator.of(context).push(
                               MaterialPageRoute(
-                                  builder: (context) => Settingpage())),
+                                  builder: (context) => const Settingpage())),
                         ),
                       ];
                     },
@@ -91,19 +91,19 @@ class _MainAppState extends State<MainApp> {
               tabs: [
                 Tab(
                     child: IconButton(
-                  icon: Icon(Icons.camera_alt,
+                  icon: const Icon(Icons.camera_alt,
                   color: Color.fromRGBO(255, 255, 255, 1),
                   size: 35,),
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Profilepicpage()
+                            builder: (context) => const Profilepicpage()
                             ),
                             );
                   },
                 ),),
-                Tab(
+                const Tab(
                     icon: AutoSizeText(
                   'CHATS',
                   textAlign: TextAlign.center,
@@ -113,7 +113,7 @@ class _MainAppState extends State<MainApp> {
                       color: Color.fromRGBO(255, 255, 255, 1)),
                   maxLines: 1,
                 )),
-                Tab(
+                const Tab(
                     icon: AutoSizeText(
                   'STATUS',
                   textAlign: TextAlign.center,
@@ -123,7 +123,7 @@ class _MainAppState extends State<MainApp> {
                       color: Color.fromRGBO(255, 255, 255, 1)),
                   maxLines: 1,
                 )),
-                Tab(
+                const Tab(
                     icon: AutoSizeText(
                   'CALLS',
                   textAlign: TextAlign.center,
@@ -185,9 +185,10 @@ class _MainAppState extends State<MainApp> {
                                             MaterialPageRoute(
                                                 // ignore: non_constant_identifier_names
                                                 builder:
+                                                    // ignore: non_constant_identifier_names
                                                     (BuildContextContext) =>
                                                         // const myChatScreen()
-                                                        ChatScreen()));
+                                                        const ChatScreen()));
                                       },
                                     ),
                                   ],
@@ -223,9 +224,9 @@ class _MainAppState extends State<MainApp> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => createnewaccount())));
+                            builder: ((context) => const createnewaccount())));
                   },
-                  icon: Icon(Icons.abc)),
+                  icon: const Icon(Icons.abc)),
               const Text('Calls coming soon')
 
               // ChatList(),

@@ -1,4 +1,4 @@
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, non_constant_identifier_names, avoid_print, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:not_whatsapp/profile_page.dart';
@@ -106,7 +106,7 @@ class _myChatScreenState extends State<myChatScreen> {
             child: FloatingActionButton(
               onPressed: () {},
               backgroundColor: themeColorGreen,
-              child: Icon(
+              child: const Icon(
                 Icons.keyboard_voice,
                 // color: Color.fromARGB(255, 9, 110, 81),
               ),
@@ -114,27 +114,6 @@ class _myChatScreenState extends State<myChatScreen> {
           )
         ],
       ),
-      // bottomNavigationBar: SizedBox(
-      //   width: MediaQuery.of(context).devicePixelRatio-,
-      //   child: Column(
-      //     children: [
-      //       Row(
-      //         children: [
-      //           IconButton(icon: Icon(Icons.attach_file),onPressed: () {
-
-      //           },),
-      //           TextField(
-      //             decoration: InputDecoration(
-      //             ),
-      //           ),
-      //           IconButton(icon: Icon(Icons.photo_camera),onPressed: () {
-
-      //           },),
-      //         ],
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
@@ -177,7 +156,7 @@ class ChatScreenState extends State<ChatScreen> {
 
   Widget _buildTextComposer() {
     return Container(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: Row(
         children: <Widget>[
           Expanded(
@@ -189,10 +168,10 @@ class ChatScreenState extends State<ChatScreen> {
               child: Row(
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.emoji_emotions_outlined),
+                    icon: const Icon(Icons.emoji_emotions_outlined),
                     onPressed: () {},
                   ),
-                  SizedBox(width: 10.0),
+                  const SizedBox(width: 10.0),
                   Expanded(
                     child: TextField(
                       controller: _textController,
@@ -202,7 +181,7 @@ class ChatScreenState extends State<ChatScreen> {
                       onChanged: (changedValue) {
                         _inputValue.text = changedValue;
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Message",
                         border: InputBorder.none,
                         // errorText: _validate ? "Value Can't Be Empty" : null
@@ -210,7 +189,7 @@ class ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.attach_file,
                       color: Colors.black54,
                     ),
@@ -223,7 +202,7 @@ class ChatScreenState extends State<ChatScreen> {
                   //   ),
                   //   onPressed: () {},
                   // ),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.camera_alt)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.camera_alt)),
 
                   // IconButton(onPressed: (){
                   //   _textController.text.isEmpty
@@ -236,7 +215,7 @@ class ChatScreenState extends State<ChatScreen> {
               ),
             ),
           ),
-          SizedBox(width: 10.0),
+          const SizedBox(width: 10.0),
           FloatingActionButton(
             onPressed: () {},
             child: IconButton(
@@ -245,7 +224,7 @@ class ChatScreenState extends State<ChatScreen> {
                       ? print
                       : _handleSubmitted(_textController.text);
                 },
-                icon: Icon(Icons.send)),
+                icon: const Icon(Icons.send)),
             backgroundColor: themeColorGreen,
           ),
           // FloatingActionButton(
@@ -297,7 +276,7 @@ class ChatScreenState extends State<ChatScreen> {
                 // const PopupMenuItem(child: Text('New Broadcast')),
                 // const PopupMenuItem(child: Text('Linked Devices')),
                 // const PopupMenuItem(child: Text('Starred Messages')),
-                PopupMenuItem(
+                const PopupMenuItem(
                   child: Text('Settings'),
                 
                 ),
@@ -317,8 +296,8 @@ class ChatScreenState extends State<ChatScreen> {
           ],
         ),
         title: GestureDetector(
-          child: SizedBox(
-            child: const Row(
+          child: const SizedBox(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Column(
@@ -346,7 +325,8 @@ class ChatScreenState extends State<ChatScreen> {
           ),
           onTap: () {
             print('Profile');
-            Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => profilePage()) );
+            // ignore: avoid_types_as_parameter_names
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => const profilePage()) );
           },
         ),
       ),
@@ -385,7 +365,7 @@ class ChatMessage extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: const EdgeInsets.only(right: 16.0),
-            child: CircleAvatar(
+            child: const CircleAvatar(
                 child: Text('Me', style: TextStyle(color: Colors.white)),
                 backgroundColor: Colors.black),
           ),
@@ -401,7 +381,7 @@ class ChatMessage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('User',
+                    const Text('User',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w900,
@@ -409,7 +389,7 @@ class ChatMessage extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.only(top: 5.0),
                       child: Text(text,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
                               fontSize: 15)),
