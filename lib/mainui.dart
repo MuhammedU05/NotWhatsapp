@@ -1,7 +1,5 @@
 // ignore_for_file: avoid_print
 
-import 'package:not_whatsapp/signup.dart';
-
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
@@ -68,51 +66,67 @@ class _MainAppState extends State<MainApp> {
                         // const PopupMenuItem(child: Text('New Broadcast')),
                         // const PopupMenuItem(child: Text('Linked Devices')),
                         // const PopupMenuItem(child: Text('Starred Messages')),
-                        const PopupMenuItem(child: Text('Settings')),
+                        PopupMenuItem(
+                          child: const Text('Settings'),
+                          onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => const Settingpage())),
+                        ),
                       ];
                     },
                   ),
                 ],
               )
             ],
-            bottom: const TabBar(
+            bottom: TabBar(
               indicatorColor: Colors.green,
               indicatorWeight: 4,
               tabAlignment: TabAlignment.fill,
               // controller: ,
               tabs: [
                 Tab(
-                    icon: Icon(
-                  Icons.camera_alt,
+                    child: IconButton(
+                  icon: const Icon(Icons.camera_alt,
                   color: Color.fromRGBO(255, 255, 255, 1),
-                  size: 35,
-                )),
-                Tab(
-                    icon: Text(
+                  size: 35,),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Profilepicpage()
+                            ),
+                            );
+                  },
+                ),),
+                const Tab(
+                    icon: AutoSizeText(
                   'CHATS',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
                       color: Color.fromRGBO(255, 255, 255, 1)),
+                  maxLines: 1,
                 )),
-                Tab(
-                    icon: Text(
+                const Tab(
+                    icon: AutoSizeText(
                   'STATUS',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 19,
                       color: Color.fromRGBO(255, 255, 255, 1)),
+                  maxLines: 1,
                 )),
-                Tab(
-                    icon: Text(
+                const Tab(
+                    icon: AutoSizeText(
                   'CALLS',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
                       color: Color.fromRGBO(255, 255, 255, 1)),
+                  maxLines: 1,
                 )),
               ],
             ),
@@ -166,10 +180,10 @@ class _MainAppState extends State<MainApp> {
                                             MaterialPageRoute(
                                                 // ignore: non_constant_identifier_names
                                                 builder:
+                                                    // ignore: non_constant_identifier_names
                                                     (BuildContextContext) =>
                                                         // const myChatScreen()
-                                                        ChatScreen()
-                                                        ));
+                                                        const ChatScreen()));
                                       },
                                     ),
                                   ],
@@ -200,14 +214,7 @@ class _MainAppState extends State<MainApp> {
                       ],
                     ),
               const Text('Status coming soon'),
-              IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => signUp())));
-                  },
-                  icon: Icon(Icons.abc)),
+
               const Text('Calls coming soon')
 
               // const Text('Calls coming soon')

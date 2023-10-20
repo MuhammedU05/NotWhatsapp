@@ -1,4 +1,7 @@
+// ignore_for_file: unused_element, non_constant_identifier_names, avoid_print, sort_child_properties_last
+
 import 'package:flutter/material.dart';
+import 'package:not_whatsapp/profile_page.dart';
 import 'main.dart';
 
 // ignore: camel_case_types
@@ -103,7 +106,7 @@ class _myChatScreenState extends State<myChatScreen> {
             child: FloatingActionButton(
               onPressed: () {},
               backgroundColor: themeColorGreen,
-              child: Icon(
+              child: const Icon(
                 Icons.keyboard_voice,
                 // color: Color.fromARGB(255, 9, 110, 81),
               ),
@@ -111,32 +114,13 @@ class _myChatScreenState extends State<myChatScreen> {
           )
         ],
       ),
-      // bottomNavigationBar: SizedBox(
-      //   width: MediaQuery.of(context).devicePixelRatio-,
-      //   child: Column(
-      //     children: [
-      //       Row(
-      //         children: [
-      //           IconButton(icon: Icon(Icons.attach_file),onPressed: () {
-
-      //           },),
-      //           TextField(
-      //             decoration: InputDecoration(
-      //             ),
-      //           ),
-      //           IconButton(icon: Icon(Icons.photo_camera),onPressed: () {
-
-      //           },),
-      //         ],
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
 
 class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
+
   @override
   State createState() => ChatScreenState();
 }
@@ -144,6 +128,9 @@ class ChatScreen extends StatefulWidget {
 class ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
+  final TextEditingController _inputValue = TextEditingController();
+  bool _isHintTextVisible = true;
+  final FocusNode _focusNode = FocusNode();
 
   void _handleSubmitted(String text) {
     _textController.clear();
@@ -155,7 +142,20 @@ class ChatScreenState extends State<ChatScreen> {
     });
   }
 
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(() {
+      setState(() {
+        _isHintTextVisible =
+            _textController.text.isEmpty && _focusNode.hasFocus;
+        _isHintTextVisible == false ? print('Changed') : print('Changed 2');
+      });
+    });
+  }
+
   Widget _buildTextComposer() {
+<<<<<<< HEAD
     return Container();
     // Stack(
     //   alignment: Alignment.topCenter,
@@ -283,6 +283,92 @@ class ChatScreenState extends State<ChatScreen> {
     //       ],
     //     ),
     // );
+=======
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black38,
+                borderRadius: BorderRadius.circular(25.0),
+              ),
+              child: Row(
+                children: <Widget>[
+                  IconButton(
+                    icon: const Icon(Icons.emoji_emotions_outlined),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(width: 10.0),
+                  Expanded(
+                    child: TextField(
+                      controller: _textController,
+                      onSubmitted: _textController.text.isNotEmpty
+                          ? _handleSubmitted
+                          : null,
+                      onChanged: (changedValue) {
+                        _inputValue.text = changedValue;
+                      },
+                      decoration: const InputDecoration(
+                        hintText: "Message",
+                        border: InputBorder.none,
+                        // errorText: _validate ? "Value Can't Be Empty" : null
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.attach_file,
+                      color: Colors.black54,
+                    ),
+                    onPressed: () {},
+                  ),
+                  // IconButton(
+                  //   icon: Icon(
+                  //     Icons.attach_file,
+                  //     color: Colors.black54,
+                  //   ),
+                  //   onPressed: () {},
+                  // ),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.camera_alt)),
+
+                  // IconButton(onPressed: (){
+                  //   _textController.text.isEmpty
+                  //         ? print
+                  //         : _handleSubmitted(_textController.text);
+                  // },
+                  // icon: Icon(Icons.send)
+                  // )
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(width: 10.0),
+          FloatingActionButton(
+            onPressed: () {},
+            child: IconButton(
+                onPressed: () {
+                  _textController.text.isEmpty
+                      ? print
+                      : _handleSubmitted(_textController.text);
+                },
+                icon: const Icon(Icons.send)),
+            backgroundColor: themeColorGreen,
+          ),
+          // FloatingActionButton(
+          //   onPressed: () {},
+          //   child: IconButton(
+          //       onPressed: () {
+          //         // voice recorder function
+          //       },
+          //       icon: Icon(Icons.keyboard_voice)),
+          //   backgroundColor: themeColorGreen,
+          // ),
+        ],
+      ),
+    );
+>>>>>>> 37fa6edb5f2a5f366c5162123a02dca2a859457b
   }
 
   @override
@@ -320,7 +406,10 @@ class ChatScreenState extends State<ChatScreen> {
                 // const PopupMenuItem(child: Text('New Broadcast')),
                 // const PopupMenuItem(child: Text('Linked Devices')),
                 // const PopupMenuItem(child: Text('Starred Messages')),
-                const PopupMenuItem(child: Text('Settings')),
+                const PopupMenuItem(
+                  child: Text('Settings'),
+                
+                ),
               ];
             },
           ),
@@ -337,33 +426,37 @@ class ChatScreenState extends State<ChatScreen> {
           ],
         ),
         title: GestureDetector(
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Column(
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.red,
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          child: const SizedBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Column(
                   children: [
-                    Text('Name', style: TextStyle(fontSize: 25)),
-                    Text(
-                      'Online',
-                      style: TextStyle(fontSize: 15),
+                    CircleAvatar(
+                      backgroundColor: Colors.red,
                     ),
                   ],
                 ),
-              )
-            ],
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Name', style: TextStyle(fontSize: 25)),
+                      Text(
+                        'Online',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
           onTap: () {
             print('Profile');
+            // ignore: avoid_types_as_parameter_names
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => const profilePage()) );
           },
         ),
       ),
@@ -371,7 +464,7 @@ class ChatScreenState extends State<ChatScreen> {
         children: <Widget>[
           Flexible(
             child: ListView.builder(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               reverse: true,
               itemBuilder: (_, int index) => _messages[index],
               itemCount: _messages.length,
@@ -385,8 +478,12 @@ class ChatScreenState extends State<ChatScreen> {
   }
 }
 
+// Show(bool isHintTextVisible) {
+//   print(isHintTextVisible);
+// }
+
 class ChatMessage extends StatelessWidget {
-  ChatMessage({required this.text});
+  const ChatMessage({super.key, required this.text});
   final String text;
 
   @override
@@ -398,7 +495,7 @@ class ChatMessage extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: const EdgeInsets.only(right: 16.0),
-            child: CircleAvatar(
+            child: const CircleAvatar(
                 child: Text('Me', style: TextStyle(color: Colors.white)),
                 backgroundColor: Colors.black),
           ),
@@ -414,7 +511,7 @@ class ChatMessage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('User',
+                    const Text('User',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w900,
@@ -422,7 +519,7 @@ class ChatMessage extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.only(top: 5.0),
                       child: Text(text,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
                               fontSize: 15)),
