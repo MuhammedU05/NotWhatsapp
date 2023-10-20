@@ -1,10 +1,13 @@
 // ignore_for_file: avoid_print
 
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:not_whatsapp/Settingspage.dart';
 import 'package:not_whatsapp/createnewaccount.dart';
+import 'package:not_whatsapp/profilepicpage.dart';
+
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 
 int addChatMessage = 0;
 int number = 0;
@@ -68,26 +71,39 @@ class _MainAppState extends State<MainApp> {
                         // const PopupMenuItem(child: Text('New Broadcast')),
                         // const PopupMenuItem(child: Text('Linked Devices')),
                         // const PopupMenuItem(child: Text('Starred Messages')),
-                        const PopupMenuItem(child: Text('Settings')),
+                        PopupMenuItem(
+                          child: const Text('Settings'),
+                          onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => const Settingpage())),
+                        ),
                       ];
                     },
                   ),
                 ],
               )
             ],
-            bottom: const TabBar(
+            bottom: TabBar(
               indicatorColor: Colors.green,
               indicatorWeight: 4,
               tabAlignment: TabAlignment.fill,
               // controller: ,
               tabs: [
                 Tab(
-                    icon: Icon(
-                  Icons.camera_alt,
+                    child: IconButton(
+                  icon: const Icon(Icons.camera_alt,
                   color: Color.fromRGBO(255, 255, 255, 1),
-                  size: 35,
-                )),
-                Tab(
+                  size: 35,),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Profilepicpage()
+                            ),
+                            );
+                  },
+                ),),
+                const Tab(
                     icon: AutoSizeText(
                   'CHATS',
                   textAlign: TextAlign.center,
@@ -97,7 +113,7 @@ class _MainAppState extends State<MainApp> {
                       color: Color.fromRGBO(255, 255, 255, 1)),
                   maxLines: 1,
                 )),
-                Tab(
+                const Tab(
                     icon: AutoSizeText(
                   'STATUS',
                   textAlign: TextAlign.center,
@@ -107,7 +123,7 @@ class _MainAppState extends State<MainApp> {
                       color: Color.fromRGBO(255, 255, 255, 1)),
                   maxLines: 1,
                 )),
-                Tab(
+                const Tab(
                     icon: AutoSizeText(
                   'CALLS',
                   textAlign: TextAlign.center,
@@ -169,9 +185,10 @@ class _MainAppState extends State<MainApp> {
                                             MaterialPageRoute(
                                                 // ignore: non_constant_identifier_names
                                                 builder:
+                                                    // ignore: non_constant_identifier_names
                                                     (BuildContextContext) =>
                                                         // const myChatScreen()
-                                                        ChatScreen()));
+                                                        const ChatScreen()));
                                       },
                                     ),
                                   ],
@@ -207,9 +224,9 @@ class _MainAppState extends State<MainApp> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => createnewaccount())));
+                            builder: ((context) => const createnewaccount())));
                   },
-                  icon: Icon(Icons.abc)),
+                  icon: const Icon(Icons.abc)),
               const Text('Calls coming soon')
 
               // ChatList(),
