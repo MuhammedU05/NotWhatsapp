@@ -21,13 +21,14 @@ class _createnewaccountState extends State<createnewaccount> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
-            width: 200,
-            height: 150,
+            width: 100,
+            height: 100,
             decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(50.0),
             ),
-            child: Image.asset('assets/whatsapp.png'),
+            child: Image.asset('assets/WhatsApp Logo PNG Vector (EPS) Free Download.png',
+            scale: BorderSide.strokeAlignOutside,),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 25),
