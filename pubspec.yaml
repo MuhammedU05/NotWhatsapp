@@ -20,11 +20,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-<<<<<<< HEAD
-
-asset:
-  asset/  
-=======
   assets:
     - assets/
->>>>>>> 37fa6edb5f2a5f366c5162123a02dca2a859457b

@@ -1,7 +1,10 @@
 // ignore_for_file: avoid_print
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'main.dart';
 import 'package:flutter/material.dart';
+import 'profilepicpage.dart';
+import 'Settingspage.dart';
 import 'chat_screen.dart';
 
 int addChatMessage = 0;
