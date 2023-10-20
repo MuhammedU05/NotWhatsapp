@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'package:not_whatsapp/signup.dart';
+
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
@@ -198,8 +200,17 @@ class _MainAppState extends State<MainApp> {
                       ],
                     ),
               const Text('Status coming soon'),
-
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => signUp())));
+                  },
+                  icon: Icon(Icons.abc)),
               const Text('Calls coming soon')
+
+              // const Text('Calls coming soon')
 
               // ChatList(),
               // chatListView(),
