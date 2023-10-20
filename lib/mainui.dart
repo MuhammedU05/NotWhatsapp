@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'package:not_whatsapp/createnewaccount.dart';
-
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
