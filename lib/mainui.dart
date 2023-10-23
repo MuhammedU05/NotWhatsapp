@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_print
 
-import 'package:auto_size_text/auto_size_text.dart';
+// import 'package:auto_size_text/auto_size_text.dart';
 import 'package:not_whatsapp/Settingspage.dart';
-import 'package:not_whatsapp/profilepicpage.dart';
+// import 'package:not_whatsapp/profilepicpage.dart';
 
 import 'main.dart';
 import 'package:flutter/material.dart';
@@ -82,28 +82,17 @@ class _MainAppState extends State<MainApp> {
                 ],
               )
             ],
-            bottom: TabBar(
+            bottom: const TabBar(
               indicatorColor: Colors.green,
               indicatorWeight: 4,
               tabAlignment: TabAlignment.fill,
-              // controller: ,
               tabs: [
-                Tab(
-                    child: IconButton(
-                  icon: const Icon(Icons.camera_alt,
+                Tab(child: Icon( Icons.camera_alt,
                   color: Color.fromRGBO(255, 255, 255, 1),
                   size: 35,),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Profilepicpage()
-                            ),
-                            );
-                  },
-                ),),
-                const Tab(
-                    icon: AutoSizeText(
+                ),
+                Tab(
+                    child: Text(
                   'CHATS',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -112,8 +101,8 @@ class _MainAppState extends State<MainApp> {
                       color: Color.fromRGBO(255, 255, 255, 1)),
                   maxLines: 1,
                 )),
-                const Tab(
-                    icon: AutoSizeText(
+                Tab(
+                    child: Text(
                   'STATUS',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -122,8 +111,8 @@ class _MainAppState extends State<MainApp> {
                       color: Color.fromRGBO(255, 255, 255, 1)),
                   maxLines: 1,
                 )),
-                const Tab(
-                    icon: AutoSizeText(
+                Tab(
+                    child: Text(
                   'CALLS',
                   textAlign: TextAlign.center,
                   style: TextStyle(
