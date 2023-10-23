@@ -52,14 +52,17 @@ class _createnewaccountState extends State<createnewaccount> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
                 ),
-                TextField(
-                  controller: isMobileNumberEntered ? otpControllers[0] : null,
-                  decoration: InputDecoration(
-                    hintText: 'Mobile number',
-                    border: OutlineInputBorder(),
-                    labelText: 'Mobile number',
-                  ),
-                ),
+                // TextField(
+                //   controller: isMobileNumberEntered ? otpControllers[0] : null,
+                //   decoration: InputDecoration(
+                //     hintText: 'Mobile number',
+                //     border: OutlineInputBorder(),
+                //     labelText: 'Mobile number',
+                //   ),
+                // ),
+
+
+                
                 SizedBox(height: 20, width: 50), // Add spacing
                 ElevatedButton(
                   onPressed: () {

@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '984079065874',
     projectId: 'notwhatsapp-1915f',
     authDomain: 'notwhatsapp-1915f.firebaseapp.com',
+    databaseURL: 'https://notwhatsapp-1915f-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'notwhatsapp-1915f.appspot.com',
     measurementId: 'G-GSQN3QCT54',
   );
@@ -58,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:984079065874:android:6b308d7deae912e22e09cb',
     messagingSenderId: '984079065874',
     projectId: 'notwhatsapp-1915f',
+    databaseURL: 'https://notwhatsapp-1915f-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'notwhatsapp-1915f.appspot.com',
   );
 
@@ -66,7 +68,9 @@ class DefaultFirebaseOptions {
     appId: '1:984079065874:ios:a4251957baf696652e09cb',
     messagingSenderId: '984079065874',
     projectId: 'notwhatsapp-1915f',
+    databaseURL: 'https://notwhatsapp-1915f-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'notwhatsapp-1915f.appspot.com',
+    iosClientId: '984079065874-5q645rco7cdva64qkcr0g5vr92q6smnp.apps.googleusercontent.com',
     iosBundleId: 'com.example.notWhatsapp',
   );
 
@@ -75,7 +79,9 @@ class DefaultFirebaseOptions {
     appId: '1:984079065874:ios:2acbcc812503a42a2e09cb',
     messagingSenderId: '984079065874',
     projectId: 'notwhatsapp-1915f',
+    databaseURL: 'https://notwhatsapp-1915f-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'notwhatsapp-1915f.appspot.com',
+    iosClientId: '984079065874-dqo0cve5et7hpdag2uuuubomurumjmm2.apps.googleusercontent.com',
     iosBundleId: 'com.example.notWhatsapp.RunnerTests',
   );
 }

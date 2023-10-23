@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "984079065874",
+    "firebase_url": "https://notwhatsapp-1915f-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "notwhatsapp-1915f",
     "storage_bucket": "notwhatsapp-1915f.appspot.com"
   },
@@ -12,7 +13,12 @@
           "package_name": "com.example.not_whatsapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "984079065874-ldsaahn5gj9b5snt0t95m7167amku1es.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAW2d0O6Q7VkY5P2WEAabUMOVN44TrBJtE"
@@ -20,7 +26,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "984079065874-ldsaahn5gj9b5snt0t95m7167amku1es.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "984079065874-5q645rco7cdva64qkcr0g5vr92q6smnp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.notWhatsapp"
+              }
+            }
+          ]
         }
       }
     }
