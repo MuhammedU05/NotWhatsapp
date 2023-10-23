@@ -33,7 +33,7 @@ class _SettingpageState extends State<Settingpage> {
         children: <Widget>[
           const ListTile(leading: Padding(
             padding: EdgeInsets.only(right: 23),
-            child: CircleAvatar(radius: 60,)
+            child: CircleAvatar(radius: 60,backgroundColor: Colors.red,)
           ),
           title: Text("Name"),
           subtitle: Text("hello"),

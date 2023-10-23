@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:not_whatsapp/profilepicpage.dart';
+// import 'package:auto_size_text/auto_size_text.dart';
 
 class createnewaccount extends StatefulWidget {
   const createnewaccount({Key? key}) : super(key: key);
@@ -49,12 +51,11 @@ class _createnewaccountState extends State<createnewaccount> {
             width: 100,
             height: 100,
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: Colors.transparent,
               borderRadius: BorderRadius.circular(50.0),
             ),
-            child: Image.asset(
-              'assets/WhatsApp Logo PNG Vector (EPS) Free Download.png',
-              scale: BorderSide.strokeAlignOutside,
+            child: Image.asset('assets/pngwing.com.png',
+            // scale: BorderSide.strokeAlignOutside
             ),
           ),
           Padding(
@@ -156,7 +157,12 @@ class _createnewaccountState extends State<createnewaccount> {
                         'Resend OTP in $countdown seconds'), // Add spacing between the OTP input and the "Login" button
                   ElevatedButton(
                     onPressed: () {
-                      // Add your login logic here
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Profilepicpage()
+                            ),
+                            );
                     },
                     child: Text('Login'),
                   ),
