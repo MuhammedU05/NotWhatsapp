@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:not_whatsapp/createnewaccount.dart';
 import 'package:not_whatsapp/otp.dart';
 
 
@@ -84,7 +85,16 @@ class _signUPState extends State<signUp> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [  
                     Text('Already register?'),
-                Text('Login',style: TextStyle(fontWeight: FontWeight.bold),)],)
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const createnewaccount()
+                            ),
+                            );
+                  },
+                  child: Text('Login',style: TextStyle(fontWeight: FontWeight.bold),))],)
               ],
             ),
           ],

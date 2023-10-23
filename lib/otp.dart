@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:not_whatsapp/mainui.dart';
+import 'package:not_whatsapp/profile_page.dart';
+import 'package:not_whatsapp/profilepicpage.dart';
 // import 'signup.dart';
 
 class Otp extends StatefulWidget {
@@ -66,10 +69,15 @@ class _OtpState extends State<Otp> {
                   ),
                   SizedBox(
                       height: 20,
-                      width://hi
+                      width:
                  50), 
                  ElevatedButton(onPressed: (){
-
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Profilepicpage()
+                            ),
+                            );
                  },
                  child: Text('Create Account'))
                 ]

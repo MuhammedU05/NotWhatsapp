@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:not_whatsapp/profilepicpage.dart';
+import 'package:not_whatsapp/signup.dart';
 // import 'package:auto_size_text/auto_size_text.dart';
 
 class createnewaccount extends StatefulWidget {
@@ -174,8 +175,12 @@ class _createnewaccountState extends State<createnewaccount> {
             ),
             GestureDetector(
             onTap: () {
-              // Add your action when the "Create New Account" text is tapped
-              // For example, navigate to a registration page.
+              Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const signUp()
+                            ),
+                            );
             },
             child: Text(
               'Create New Account',
