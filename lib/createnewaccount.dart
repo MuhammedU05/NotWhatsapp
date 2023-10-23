@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class createnewaccount extends StatefulWidget {
@@ -12,6 +14,29 @@ class _createnewaccountState extends State<createnewaccount> {
       List.generate(6, (index) => TextEditingController());
   List<FocusNode> focusNodes = List.generate(6, (index) => FocusNode());
   bool isMobileNumberEntered = false;
+  int countdown = 60;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void startCountdown() {
+  const oneSec = const Duration(seconds: 1);
+  Timer.periodic(oneSec, (Timer timer) {
+    if (countdown == 0) {
+      timer.cancel();
+      setState(() {
+        countdown = 60; // Reset the countdown
+      });
+    } else {
+      setState(() {
+        countdown--;
+      });
+    }
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +52,10 @@ class _createnewaccountState extends State<createnewaccount> {
               color: Colors.black,
               borderRadius: BorderRadius.circular(50.0),
             ),
-            child: Image.asset('assets/WhatsApp Logo PNG Vector (EPS) Free Download.png',
-            scale: BorderSide.strokeAlignOutside,),
+            child: Image.asset(
+              'assets/WhatsApp Logo PNG Vector (EPS) Free Download.png',
+              scale: BorderSide.strokeAlignOutside,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 25),
@@ -38,7 +65,7 @@ class _createnewaccountState extends State<createnewaccount> {
             ),
           ),
           Container(
-            color: Color(0xFFF6F7F8),
+            color: Colors.transparent,
             width: 400,
             margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
             padding: EdgeInsets.all(16),
@@ -71,7 +98,7 @@ class _createnewaccountState extends State<createnewaccount> {
           ),
           if (isMobileNumberEntered)
             Container(
-              color: Color.fromARGB(255, 245, 246, 245),
+              color: Colors.transparent,
               width: 400,
               margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
               padding: EdgeInsets.all(16),
@@ -112,10 +139,21 @@ class _createnewaccountState extends State<createnewaccount> {
                       );
                     }),
                   ),
-                  SizedBox(
-                      height: 20,
-                      width:
-                          50), // Add spacing between the OTP input and the "Login" button
+                  SizedBox(height: 20, width: 50),
+                  if (countdown == 0)
+                    ElevatedButton(
+                      onPressed: () {
+                        // Add your resend OTP logic here
+                        setState(() {
+                          countdown = 60; // Reset the countdown
+                          startCountdown(); // Start the countdown again
+                        });
+                      },
+                      child: Text('Resend OTP'),
+                    )
+                  else
+                    Text(
+                        'Resend OTP in $countdown seconds'), // Add spacing between the OTP input and the "Login" button
                   ElevatedButton(
                     onPressed: () {
                       // Add your login logic here
@@ -125,6 +163,19 @@ class _createnewaccountState extends State<createnewaccount> {
                 ],
               ),
             ),
+            GestureDetector(
+            onTap: () {
+              // Add your action when the "Create New Account" text is tapped
+              // For example, navigate to a registration page.
+            },
+            child: Text(
+              'Create New Account',
+              style: TextStyle(
+                color: Colors.black, // You can change the text color
+                decoration: TextDecoration.underline, // Add an underline
+              ),
+            ),
+          ),
         ],
       ),
     );
