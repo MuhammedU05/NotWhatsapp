@@ -1,9 +1,9 @@
 // ignore_for_file: avoid_print
 
-import 'package:auto_size_text/auto_size_text.dart';
+// import 'package:auto_size_text/auto_size_text.dart';
 import 'package:not_whatsapp/Settingspage.dart';
 import 'package:not_whatsapp/createnewaccount.dart';
-import 'package:not_whatsapp/profilepicpage.dart';
+// import 'package:not_whatsapp/profilepicpage.dart';
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
@@ -94,16 +94,16 @@ class _MainAppState extends State<MainApp> {
                   color: Color.fromRGBO(255, 255, 255, 1),
                   size: 35,),
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Profilepicpage()
-                            ),
-                            );
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => const Profilepicpage()
+                    //         ),
+                    //         );
                   },
                 ),),
                 const Tab(
-                    icon: AutoSizeText(
+                    child: Text(
                   'CHATS',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -113,7 +113,7 @@ class _MainAppState extends State<MainApp> {
                   maxLines: 1,
                 )),
                 const Tab(
-                    icon: AutoSizeText(
+                    child: Text(
                   'STATUS',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -123,7 +123,7 @@ class _MainAppState extends State<MainApp> {
                   maxLines: 1,
                 )),
                 const Tab(
-                    icon: AutoSizeText(
+                    child: Text(
                   'CALLS',
                   textAlign: TextAlign.center,
                   style: TextStyle(

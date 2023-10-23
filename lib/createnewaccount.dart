@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:not_whatsapp/profilepicpage.dart';
+// import 'package:auto_size_text/auto_size_text.dart';
 
 class createnewaccount extends StatefulWidget {
   const createnewaccount({Key? key}) : super(key: key);
@@ -119,7 +121,12 @@ class _createnewaccountState extends State<createnewaccount> {
                           50), // Add spacing between the OTP input and the "Login" button
                   ElevatedButton(
                     onPressed: () {
-                      // Add your login logic here
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Profilepicpage()
+                            ),
+                            );
                     },
                     child: Text('Login'),
                   ),
