@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:not_whatsapp/otp.dart';
 
+
 class signUp extends StatefulWidget {
   const signUp({Key? key}) : super(key: key);
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:not_whatsapp/profilepicpage.dart';
 // import 'package:auto_size_text/auto_size_text.dart';
@@ -14,6 +16,29 @@ class _createnewaccountState extends State<createnewaccount> {
       List.generate(6, (index) => TextEditingController());
   List<FocusNode> focusNodes = List.generate(6, (index) => FocusNode());
   bool isMobileNumberEntered = false;
+  int countdown = 60;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void startCountdown() {
+  const oneSec = const Duration(seconds: 1);
+  Timer.periodic(oneSec, (Timer timer) {
+    if (countdown == 0) {
+      timer.cancel();
+      setState(() {
+        countdown = 60; // Reset the countdown
+      });
+    } else {
+      setState(() {
+        countdown--;
+      });
+    }
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -118,10 +143,21 @@ class _createnewaccountState extends State<createnewaccount> {
                       );
                     }),
                   ),
-                  SizedBox(
-                      height: 20,
-                      width:
-                          50), // Add spacing between the OTP input and the "Login" button
+                  SizedBox(height: 20, width: 50),
+                  if (countdown == 0)
+                    ElevatedButton(
+                      onPressed: () {
+                        // Add your resend OTP logic here
+                        setState(() {
+                          countdown = 60; // Reset the countdown
+                          startCountdown(); // Start the countdown again
+                        });
+                      },
+                      child: Text('Resend OTP'),
+                    )
+                  else
+                    Text(
+                        'Resend OTP in $countdown seconds'), // Add spacing between the OTP input and the "Login" button
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
@@ -136,6 +172,19 @@ class _createnewaccountState extends State<createnewaccount> {
                 ],
               ),
             ),
+            GestureDetector(
+            onTap: () {
+              // Add your action when the "Create New Account" text is tapped
+              // For example, navigate to a registration page.
+            },
+            child: Text(
+              'Create New Account',
+              style: TextStyle(
+                color: Colors.black, // You can change the text color
+                decoration: TextDecoration.underline, // Add an underline
+              ),
+            ),
+          ),
         ],
       ),
     );

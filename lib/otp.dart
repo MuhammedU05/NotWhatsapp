@@ -66,7 +66,7 @@ class _OtpState extends State<Otp> {
                   ),
                   SizedBox(
                       height: 20,
-                      width:
+                      width://hi
                  50), 
                  ElevatedButton(onPressed: (){
 
