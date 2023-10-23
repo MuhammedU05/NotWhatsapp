@@ -2,8 +2,8 @@
 
 // import 'package:auto_size_text/auto_size_text.dart';
 import 'package:not_whatsapp/Settingspage.dart';
-import 'package:not_whatsapp/createnewaccount.dart';
 // import 'package:not_whatsapp/profilepicpage.dart';
+
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
@@ -82,27 +82,16 @@ class _MainAppState extends State<MainApp> {
                 ],
               )
             ],
-            bottom: TabBar(
+            bottom: const TabBar(
               indicatorColor: Colors.green,
               indicatorWeight: 4,
               tabAlignment: TabAlignment.fill,
-              // controller: ,
               tabs: [
-                Tab(
-                    child: IconButton(
-                  icon: const Icon(Icons.camera_alt,
+                Tab(child: Icon( Icons.camera_alt,
                   color: Color.fromRGBO(255, 255, 255, 1),
                   size: 35,),
-                  onPressed: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => const Profilepicpage()
-                    //         ),
-                    //         );
-                  },
-                ),),
-                const Tab(
+                ),
+                Tab(
                     child: Text(
                   'CHATS',
                   textAlign: TextAlign.center,
@@ -112,7 +101,7 @@ class _MainAppState extends State<MainApp> {
                       color: Color.fromRGBO(255, 255, 255, 1)),
                   maxLines: 1,
                 )),
-                const Tab(
+                Tab(
                     child: Text(
                   'STATUS',
                   textAlign: TextAlign.center,
@@ -122,7 +111,7 @@ class _MainAppState extends State<MainApp> {
                       color: Color.fromRGBO(255, 255, 255, 1)),
                   maxLines: 1,
                 )),
-                const Tab(
+                Tab(
                     child: Text(
                   'CALLS',
                   textAlign: TextAlign.center,
@@ -217,16 +206,11 @@ class _MainAppState extends State<MainApp> {
                         // ),
                       ],
                     ),
-              // const Text('Status coming soon'),
-              IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => const createnewaccount())));
-                  },
-                  icon: const Icon(Icons.abc)),
+              const Text('Status coming soon'),
+
               const Text('Calls coming soon')
+
+              // const Text('Calls coming soon')
 
               // ChatList(),
               // chatListView(),

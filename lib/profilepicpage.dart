@@ -13,16 +13,13 @@ class _ProfilepicpageState extends State<Profilepicpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(
-          color: Colors.black,
-        ),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: Center(
-            child: Text(
-          "Edit Profile",
+        centerTitle: true,
+        title: Text(
+          "Add Profile",
           style: TextStyle(color: Colors.black, fontSize: 25),
-        )),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
