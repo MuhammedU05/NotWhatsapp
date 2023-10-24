@@ -1,5 +1,5 @@
 import 'dart:async';
-
+// import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:not_whatsapp/profilepicpage.dart';
 import 'package:not_whatsapp/signup.dart';
@@ -25,21 +25,20 @@ class _createnewaccountState extends State<createnewaccount> {
   }
 
   void startCountdown() {
-  const oneSec = const Duration(seconds: 1);
-  Timer.periodic(oneSec, (Timer timer) {
-    if (countdown == 0) {
-      timer.cancel();
-      setState(() {
-        countdown = 60; // Reset the countdown
-      });
-    } else {
-      setState(() {
-        countdown--;
-      });
-    }
-  });
-}
-
+    const oneSec = const Duration(seconds: 1);
+    Timer.periodic(oneSec, (Timer timer) {
+      if (countdown == 0) {
+        timer.cancel();
+        setState(() {
+          countdown = 60; // Reset the countdown
+        });
+      } else {
+        setState(() {
+          countdown--;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +54,9 @@ class _createnewaccountState extends State<createnewaccount> {
               color: Colors.transparent,
               borderRadius: BorderRadius.circular(50.0),
             ),
-            child: Image.asset('assets/pngwing.com.png',
-            // scale: BorderSide.strokeAlignOutside
+            child: Image.asset(
+              'assets/pngwing.com.png',
+              // scale: BorderSide.strokeAlignOutside
             ),
           ),
           Padding(
@@ -78,17 +78,15 @@ class _createnewaccountState extends State<createnewaccount> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
                 ),
-                // TextField(
-                //   controller: isMobileNumberEntered ? otpControllers[0] : null,
-                //   decoration: InputDecoration(
-                //     hintText: 'Mobile number',
-                //     border: OutlineInputBorder(),
-                //     labelText: 'Mobile number',
-                //   ),
-                // ),
+                TextField(
+                  controller: isMobileNumberEntered ? otpControllers[0] : null,
+                  decoration: InputDecoration(
+                    hintText: 'Mobile number',
+                    border: OutlineInputBorder(),
+                    labelText: 'Mobile number',
+                  ),
+                ),
 
-
-                
                 SizedBox(height: 20, width: 50), // Add spacing
                 ElevatedButton(
                   onPressed: () {
@@ -164,23 +162,20 @@ class _createnewaccountState extends State<createnewaccount> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Profilepicpage()
-                            ),
-                            );
+                            builder: (context) => const Profilepicpage()),
+                      );
                     },
                     child: Text('Login'),
                   ),
                 ],
               ),
             ),
-            GestureDetector(
+          GestureDetector(
             onTap: () {
               Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const signUp()
-                            ),
-                            );
+                context,
+                MaterialPageRoute(builder: (context) => const signUp()),
+              );
             },
             child: Text(
               'Create New Account',

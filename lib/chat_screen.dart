@@ -18,7 +18,6 @@ class _myChatScreenState extends State<myChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
         titleSpacing: 0,
         toolbarHeight: 70,
         backgroundColor: themeColorGreen,
@@ -203,7 +202,8 @@ class ChatScreenState extends State<ChatScreen> {
                   //   ),
                   //   onPressed: () {},
                   // ),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.camera_alt)),
+                  IconButton(
+                      onPressed: () {}, icon: const Icon(Icons.camera_alt)),
 
                   // IconButton(onPressed: (){
                   //   _textController.text.isEmpty
@@ -279,7 +279,6 @@ class ChatScreenState extends State<ChatScreen> {
                 // const PopupMenuItem(child: Text('Starred Messages')),
                 const PopupMenuItem(
                   child: Text('Settings'),
-                
                 ),
               ];
             },
@@ -327,7 +326,10 @@ class ChatScreenState extends State<ChatScreen> {
           onTap: () {
             print('Profile');
             // ignore: avoid_types_as_parameter_names
-            Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => const profilePage()) );
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext) => const profilePage()));
           },
         ),
       ),

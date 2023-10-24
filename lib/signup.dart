@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:not_whatsapp/createnewaccount.dart';
 import 'package:not_whatsapp/otp.dart';
 
-
 class signUp extends StatefulWidget {
   const signUp({Key? key}) : super(key: key);
 
@@ -11,22 +10,31 @@ class signUp extends StatefulWidget {
 }
 
 class _signUPState extends State<signUp> {
-  List<TextEditingController> otpControllers = List.generate(6, (index) => TextEditingController());
+  List<TextEditingController> otpControllers =
+      List.generate(6, (index) => TextEditingController());
   List<FocusNode> FocusNodes = List.generate(6, (index) => FocusNode());
   bool isMobileNumberEntered = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-       SingleChildScrollView(
-         child: Column(
+      body: SingleChildScrollView(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[SizedBox(height: 200,),
-            Icon(Icons.people,size: 100,),
-       
-            Text('Create my Account',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
+          children: <Widget>[
+            SizedBox(
+              height: 200,
+            ),
+            Icon(
+              Icons.people,
+              size: 100,
+            ),
+
+            Text(
+              'Create my Account',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
             Container(
               color: Color(0xFFF6F7F8),
               width: 400,
@@ -40,7 +48,8 @@ class _signUPState extends State<signUp> {
                     padding: const EdgeInsets.only(bottom: 20),
                   ),
                   TextField(
-                    controller: isMobileNumberEntered ? otpControllers[0] : null,
+                    controller:
+                        isMobileNumberEntered ? otpControllers[0] : null,
                     decoration: InputDecoration(
                       hintText: 'Mobile number',
                       border: OutlineInputBorder(),
@@ -50,21 +59,21 @@ class _signUPState extends State<signUp> {
                   SizedBox(height: 20, width: 50), // Add spacing
                   ElevatedButton(
                     onPressed: () {
-                            Navigator.push(
+                      Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => const Otp()
-                            ),
-                            );
-                    //  setState(() {
-                       // isMobileNumberEntered = true;
-                    //  });
+                        MaterialPageRoute(builder: (context) => const Otp()),
+                      );
+                      //  setState(() {
+                      // isMobileNumberEntered = true;
+                      //  });
                     },
                     child: Column(
                       children: [
-                        Text('Submit Mobile Number',),  
-                      ], 
-                    ), 
+                        Text(
+                          'Submit Mobile Number',
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -72,34 +81,43 @@ class _signUPState extends State<signUp> {
             // ignore: prefer_const_constructors
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [  
+              children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('continue With Google '),
-                    Image.asset('assets/google.png',scale:18,),
+                    Image.asset(
+                      'assets/google.png',
+                      scale: 18,
+                    ),
                   ],
                 ),
-                SizedBox(height: 200,),
+                SizedBox(
+                  height: 200,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [  
+                  children: [
                     Text('Already register?'),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const createnewaccount()
-                            ),
-                            );
-                  },
-                  child: Text('Login',style: TextStyle(fontWeight: FontWeight.bold),))],)
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const createnewaccount()),
+                          );
+                        },
+                        child: Text(
+                          'Login',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ))
+                  ],
+                )
               ],
             ),
           ],
-             ),
-       ),
+        ),
+      ),
     );
   }
 

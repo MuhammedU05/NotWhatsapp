@@ -87,9 +87,12 @@ class _MainAppState extends State<MainApp> {
               indicatorWeight: 4,
               tabAlignment: TabAlignment.fill,
               tabs: [
-                Tab(child: Icon( Icons.camera_alt,
-                  color: Color.fromRGBO(255, 255, 255, 1),
-                  size: 35,),
+                Tab(
+                  child: Icon(
+                    Icons.camera_alt,
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                    size: 35,
+                  ),
                 ),
                 Tab(
                     child: Text(
