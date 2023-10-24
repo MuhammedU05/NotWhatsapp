@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+// import 'package:not_whatsapp/mainui.dart';
+// import 'package:not_whatsapp/profile_page.dart';
+import 'package:not_whatsapp/profilepicpage.dart';
 // import 'signup.dart';
 
 class Otp extends StatefulWidget {
@@ -18,66 +21,68 @@ class _OtpState extends State<Otp> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-      //  mainAxisAlignment: MainAxisAlignment.center,
-      //           crossAxisAlignment: CrossAxisAlignment.center,
+        //  mainAxisAlignment: MainAxisAlignment.center,
+        //           crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          
-              Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>
-                [SizedBox(height: 250,),
-                Text('Enter your OTP',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40),),
-                SizedBox(height: 100,),
-                  
-                  Row(
+          Column(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: 250,
+                ),
+                Text(
+                  'Enter your OTP',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+                ),
+                SizedBox(
+                  height: 100,
+                ),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                    children: List.generate(6, (index) {
-                      return Container(
-               width: 60,
-               height: 60,
-               alignment: Alignment.center,
-               decoration: BoxDecoration(
-                 border: Border.all(),
-                 borderRadius: BorderRadius.circular(6),
-               ),
-               child: TextField(
-                 controller: otpControllers[index],
-                 focusNode: FocusNodes[index],
-                 textAlign: TextAlign.center,
-                 keyboardType: TextInputType.number,
-                 maxLength: 1,
-                 decoration: InputDecoration(
-                   border: InputBorder.none,
-                   counterText: "",
-                 ),
-                 onChanged: (value) {
-                   if (value.isNotEmpty && index < 5) {
-                     FocusNodes[index].unfocus();
-                     FocusNodes[index + 1].requestFocus();
-                   } else {
-                     FocusNodes[index - 1].requestFocus();
-                   }
-                 },
-               ),
+                  children: List.generate(6, (index) {
+                    return Container(
+                      width: 60,
+                      height: 60,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: TextField(
+                        controller: otpControllers[index],
+                        focusNode: FocusNodes[index],
+                        textAlign: TextAlign.center,
+                        keyboardType: TextInputType.number,
+                        maxLength: 1,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          counterText: "",
+                        ),
+                        onChanged: (value) {
+                          if (value.isNotEmpty && index < 5) {
+                            FocusNodes[index].unfocus();
+                            FocusNodes[index + 1].requestFocus();
+                          } else {
+                            FocusNodes[index - 1].requestFocus();
+                          }
+                        },
+                      ),
+                    );
+                  }),
+                ),
+                SizedBox(height: 20, width: 50),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Profilepicpage()),
                       );
-                    }),
-                  ),
-                  SizedBox(
-                      height: 20,
-                      width:
-                 50), 
-                 ElevatedButton(onPressed: (){
-
-                 },
-                 child: Text('Create Account'))
-                ]
-                
-          // 
-         // Add spacing between the OTP input and the "Login" button
-                )
-           
+                    },
+                    child: Text('Create Account'))
+              ])
         ],
       ),
     );
