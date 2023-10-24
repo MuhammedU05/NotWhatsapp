@@ -171,8 +171,7 @@ class _createnewaccountState extends State<createnewaccount> {
             ),
             GestureDetector(
             onTap: () {
-              // Add your action when the "Create New Account" text is tapped
-              // For example, navigate to a registration page.
+             
             },
             child: Text(
               'Create New Account',
