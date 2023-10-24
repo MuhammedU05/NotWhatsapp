@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:not_whatsapp/mainui.dart';
 
-class Profilepicpage extends StatefulWidget {
-  const Profilepicpage({super.key});
+class addProfile extends StatefulWidget {
+  const addProfile({super.key});
 
   @override
-  State<Profilepicpage> createState() => _ProfilepicpageState();
+  State<addProfile> createState() => _addProfileState();
 }
 
-class _ProfilepicpageState extends State<Profilepicpage> {
+class _addProfileState extends State<addProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
