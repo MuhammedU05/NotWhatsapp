@@ -12,7 +12,7 @@ int addChatMessage = 0;
 int number = 0;
 
 class MainApp extends StatefulWidget {
-  const MainApp({super.key});
+  const MainApp({super.key, required String name});
 
   @override
   State<MainApp> createState() => _MainAppState();
@@ -87,12 +87,9 @@ class _MainAppState extends State<MainApp> {
               indicatorWeight: 4,
               tabAlignment: TabAlignment.fill,
               tabs: [
-                Tab(
-                  child: Icon(
-                    Icons.camera_alt,
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    size: 35,
-                  ),
+                Tab(child: Icon( Icons.camera_alt,
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  size: 35,),
                 ),
                 Tab(
                     child: Text(
@@ -179,7 +176,7 @@ class _MainAppState extends State<MainApp> {
                                                     // ignore: non_constant_identifier_names
                                                     (BuildContextContext) =>
                                                         // const myChatScreen()
-                                                        const ChatScreen()));
+                                                        const ChatScreen(name: '',)));
                                       },
                                     ),
                                   ],

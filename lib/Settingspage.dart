@@ -1,9 +1,10 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
 import 'main.dart';
 
 class Settingpage extends StatefulWidget {
-  const Settingpage({super.key});
+  final String? name; // Add the name parameter
+
+  const Settingpage({Key? key, this.name}) : super(key: key);
 
   @override
   State<Settingpage> createState() => _SettingpageState();
@@ -32,15 +33,17 @@ class _SettingpageState extends State<Settingpage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            const ListTile(
+            ListTile(
               leading: Padding(
-                  padding: EdgeInsets.only(right: 23),
-                  child: CircleAvatar(
-                    radius: 60,
-                    backgroundColor: Colors.red,
-                  )),
+                padding: EdgeInsets.only(right: 23),
+                child: CircleAvatar(
+                  radius: 60,
+                  backgroundColor: Colors.red,
+                  child: Text(widget.name ?? "Default Name"), // Display the user's name
+                ),
+              ),
               title: Text("Name"),
-              subtitle: Text("hello"),
+              subtitle: Text(widget.name ?? "Default Name"),
             ),
             ListTile(
               onTap: () {},
@@ -57,7 +60,7 @@ class _SettingpageState extends State<Settingpage> {
             ListTile(
               onTap: () {},
               leading: const Icon(
-                Icons.contact_mail,
+                Icons.contact_mail,   
                 size: 35,
               ),
               title: const Text(
@@ -112,7 +115,7 @@ class _SettingpageState extends State<Settingpage> {
                 'Storage and data',
                 style: TextStyle(color: Colors.black, fontSize: 20),
               ),
-              subtitle: const Text("Network usage,auto-download"),
+              subtitle: const Text("Network usage, auto-download"),
             ),
             ListTile(
               onTap: () {},
@@ -126,23 +129,23 @@ class _SettingpageState extends State<Settingpage> {
               ),
               subtitle: const Text("English (Device's Language)"),
             ),
-            const ListTile(
-              leading: Icon(
+            ListTile(
+              leading: const Icon(
                 Icons.help,
                 size: 35,
               ),
-              title: Text(
+              title: const Text(
                 'Help',
                 style: TextStyle(color: Colors.black, fontSize: 20),
               ),
-              subtitle: Text("Help center, Contact us, Privacy policy"),
+              subtitle: const Text("Help center, Contact us, Privacy policy"),
             ),
-            const ListTile(
-              leading: Icon(
+            ListTile(
+              leading: const Icon(
                 Icons.inventory_2_outlined,
                 size: 35,
               ),
-              title: Text(
+              title: const Text(
                 'Invite a Friend',
                 style: TextStyle(color: Colors.black, fontSize: 20),
               ),

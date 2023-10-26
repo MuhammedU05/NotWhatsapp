@@ -13,6 +13,8 @@ dependencies:
   auto_size_text: ^3.0.0
   firebase_core: ^2.19.0
   firebase_auth: ^4.11.1
+  shared_preferences: ^2.0.8 
+  
     # overlay_support: latest_version
 
 dev_dependencies:

@@ -6,7 +6,7 @@ import 'main.dart';
 
 // ignore: camel_case_types
 class myChatScreen extends StatefulWidget {
-  const myChatScreen({super.key});
+  const myChatScreen({super.key, required String name});
 
   @override
   State<myChatScreen> createState() => _myChatScreenState();
@@ -119,7 +119,7 @@ class _myChatScreenState extends State<myChatScreen> {
 }
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+  const ChatScreen({super.key, required String name});
 
   @override
   State createState() => ChatScreenState();
