@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:not_whatsapp/mainui.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'Login_Page.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+// import 'Login_Page.dart';
 
 class addProfile extends StatefulWidget {
   const addProfile({Key? key}) : super(key: key);
@@ -122,7 +122,7 @@ class _addProfileState extends State<addProfile> {
                 String userName = _userName.text;
                 String userBio = _userBio.text;
                 try {
-                  FirebaseFirestore.instance.collection('Users').add({
+                  FirebaseFirestore.instance.collection('Users').doc(user!.uid).set({
                     'name': userName,
                     'Bio': userBio,
                     'Uuid': user!.uid,

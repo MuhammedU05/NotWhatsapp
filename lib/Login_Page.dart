@@ -372,9 +372,15 @@
 // }
 
 // import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:not_whatsapp/AddProfile_Page.dart';
+import 'package:not_whatsapp/Settingspage.dart';
+import 'package:permission_handler/permission_handler.dart';
+// import 'package:not_whatsapp/main.dart';
+// import 'package:permission_handler/permission_handler.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class PhoneAuthScreen extends StatefulWidget {
   const PhoneAuthScreen({super.key});
@@ -411,35 +417,57 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
 //       .catchError((error) => print("Failed to add user details: $error"));
 // }
 
+  Future<void> _requestSMSPermission() async {
+    final status = await Permission.sms.request();
+    if (status.isGranted) {
+      print('SMS permission granted');
+    } else if (status.isDenied) {
+      print('SMS permission denied');
+    } else if (status.isPermanentlyDenied) {
+      print('SMS permission permanently denied');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _requestSMSPermission();
+  }
+
   Future<void> verifyPhoneNumber() async {
     FirebaseAuth auth = FirebaseAuth.instance;
-    auth.setSettings(appVerificationDisabledForTesting: true);
+    auth.setSettings(appVerificationDisabledForTesting: false);
+    // var snapshot = await FirebaseFirestore.instance.collection('User').get();
 
-    await auth.verifyPhoneNumber(
-      phoneNumber: _phoneNumber,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        await auth.signInWithCredential(credential);
-        print('Phone number automatically verified and user signed in');
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        setState(() {
-          phVerified = false;
-        });
-        print(
-            '\n\nPhone number verification failed. Code: ${e.code}. Message: ${e.message}');
-      },
-      codeSent: (String verificationId, int? resendToken) {
-        setState(() {
-          _verificationId = verificationId;
-          phVerified = true;
-        });
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        setState(() {
-          _verificationId = verificationId;
-        });
-      },
-    );
+    try {
+      await auth.verifyPhoneNumber(
+        phoneNumber: _phoneNumber,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await auth.signInWithCredential(credential);
+          print('Phone number automatically verified and user signed in');
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          setState(() {
+            phVerified = false;
+          });
+          print(
+              '\n\nPhone number verification failed. Code: ${e.code}. Message: ${e.message}');
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          setState(() {
+            _verificationId = verificationId;
+            phVerified = true;
+          });
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          setState(() {
+            _verificationId = verificationId;
+          });
+        },
+      );
+    } catch (e) {
+      print('Error during phone number verification: $e');
+    }
   }
 
   Future<void> signInWithPhoneNumber(String smsCode) async {
@@ -460,100 +488,139 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
         MaterialPageRoute(builder: (context) => addProfile()),
       );
       print('Successfully signed in');
+      setLoggedInStatus(true);
       // addUserDetails('','',_phoneNumber);
     } catch (e) {
-      // Handle errors more gracefully, display an error message
-      print('Failed to sign in. Error: $e');
+      if (e is FirebaseAuthException) {
+        if (e.code == 'firebase_auth/invalid-verification-code') {
+          print(
+              'Invalid verification code. Please check and enter the correct verification code again.');
+        } else {
+          print('Failed to sign in. Error Code: ${e.code}');
+        }
+      } else {
+        print('An error occurred: $e');
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Phone Auth'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: PhoneNumber,
-              onChanged: (value) {
-                setState(() {
-                  _phoneNumber = value;
-                  myPhoneNumber = value;
-                });
-                // print(_phoneNumber);
-              },
-              decoration: InputDecoration(hintText: 'Enter phone number'),
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(50.0),
             ),
-            ElevatedButton(
-              onPressed: verifyPhoneNumber,
-              child: Text('Send OTP'),
+            child: Image.asset(
+              'assets/pngwing.com.png',
+              // scale: BorderSide.strokeAlignOutside
             ),
-            SizedBox(height: 20),
-            if (phVerified == true)
-              Container(
-                color: Colors.transparent,
-                width: 400,
-                margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: List.generate(6, (index) {
-                        return Container(
-                          width: 40,
-                          height: 40,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: TextField(
-                            controller: otpControllers[index],
-                            focusNode: focusNodes[index],
-                            textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
-                            maxLength: 1,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              counterText: "",
-                            ),
-                            onChanged: (value) {
-                              if (value.isNotEmpty) {
-                                if (index < 5) {
-                                  focusNodes[index + 1].requestFocus();
-                                } else {
-                                  focusNodes[index].unfocus();
-                                }
-                                otp = '';
-                                for (int i = 0; i < 6; i++) {
-                                  otp += otpControllers[i].text;
-                                }
-                                if (otp.length == 6) {
-                                  signInWithPhoneNumber(otp);
-                                }
-                              } else {
-                                if (index > 0) {
-                                  focusNodes[index - 1].requestFocus();
-                                }
-                              }
-                            },
-                          ),
-                        );
-                      }),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 25),
+            child: Text(
+              'Login panel',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+          ),
+          Center(
+            child: Container(
+              color: Colors.transparent,
+            width: 300,
+            margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+            padding: EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  TextField(
+                    controller: PhoneNumber,
+                    onChanged: (value) {
+                      setState(() {
+                        _phoneNumber = value;
+                        myPhoneNumber = value;
+                      });
+                      // print(_phoneNumber);
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Enter phone number',
+                      border: OutlineInputBorder(),
                     ),
-                  ],
-                ),
+                  ),
+                  ElevatedButton(
+                    onPressed: verifyPhoneNumber,
+                    child: Text('Send OTP'),
+                  ),
+                  SizedBox(height: 20),
+                  if (phVerified == true)
+                    Container(
+                      color: Colors.transparent,
+                      width: 400,
+                      margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                      padding: EdgeInsets.all(16),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: List.generate(6, (index) {
+                              return Container(
+                                width: 40,
+                                height: 40,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: TextField(
+                                  controller: otpControllers[index],
+                                  focusNode: focusNodes[index],
+                                  textAlign: TextAlign.center,
+                                  keyboardType: TextInputType.number,
+                                  maxLength: 1,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    counterText: "",
+                                  ),
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      if (index < 5) {
+                                        focusNodes[index + 1].requestFocus();
+                                      } else {
+                                        focusNodes[index].unfocus();
+                                      }
+                                      otp = '';
+                                      for (int i = 0; i < 6; i++) {
+                                        otp += otpControllers[i].text;
+                                      }
+                                      if (otp.length == 6) {
+                                        signInWithPhoneNumber(otp);
+                                      }
+                                    } else {
+                                      if (index > 0) {
+                                        focusNodes[index - 1].requestFocus();
+                                      }
+                                    }
+                                  },
+                                ),
+                              );
+                            }),
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
               ),
-          ],
-        ),
-      ),
-    );
+            ),
+          ),
+        ]));
   }
 }

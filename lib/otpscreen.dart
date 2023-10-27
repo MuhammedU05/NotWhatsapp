@@ -19,7 +19,7 @@ class _OtpScreenState extends State<OtpScreen> {
   // Function to verify the received OTP
   Future<void> verifyOTP(String otp) async {
     try {
-      final phone = '${widget.countryCode}${widget.phoneNumber}';
+      // final phone = '${widget.countryCode}${widget.phoneNumber}';
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: widget.verificationId,
         smsCode: otp,

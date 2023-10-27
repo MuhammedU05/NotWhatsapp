@@ -1,16 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+import 'Login_Page.dart';
 import 'main.dart';
 
 class Settingpage extends StatefulWidget {
-  final String? name; // Add the name parameter
+  // final String? name; // Add the name parameter
 
-  const Settingpage({Key? key, this.name}) : super(key: key);
+  const Settingpage({Key? key}) : super(key: key);
 
   @override
   State<Settingpage> createState() => _SettingpageState();
 }
 
 class _SettingpageState extends State<Settingpage> {
+  final CollectionReference users =
+      FirebaseFirestore.instance.collection('Users');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,11 +46,11 @@ class _SettingpageState extends State<Settingpage> {
                 child: CircleAvatar(
                   radius: 60,
                   backgroundColor: Colors.red,
-                  child: Text(widget.name ?? "Default Name"), // Display the user's name
+                  child: Text(''), // Display the user's name
                 ),
               ),
-              title: Text("Name"),
-              subtitle: Text(widget.name ?? "Default Name"),
+              title: Text(''),
+              subtitle: Text('jdc'),
             ),
             ListTile(
               onTap: () {},
@@ -60,7 +67,7 @@ class _SettingpageState extends State<Settingpage> {
             ListTile(
               onTap: () {},
               leading: const Icon(
-                Icons.contact_mail,   
+                Icons.contact_mail,
                 size: 35,
               ),
               title: const Text(
@@ -150,9 +157,25 @@ class _SettingpageState extends State<Settingpage> {
                 style: TextStyle(color: Colors.black, fontSize: 20),
               ),
             ),
+            Center(
+                child: TextButton(
+              child: Text('Sign Out'),
+              onPressed: () {
+                setLoggedInStatus(false);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PhoneAuthScreen()));
+              },
+            ))
           ],
         ),
       ),
     );
   }
+}
+
+void setLoggedInStatus(bool value) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setBool('isLoggedIn', value);
 }
