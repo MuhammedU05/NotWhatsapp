@@ -12,7 +12,7 @@ int addChatMessage = 0;
 int number = 0;
 
 class MainApp extends StatefulWidget {
-  const MainApp({super.key, required String name});
+  const MainApp({super.key});
 
   @override
   State<MainApp> createState() => _MainAppState();

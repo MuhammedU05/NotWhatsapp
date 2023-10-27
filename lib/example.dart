@@ -474,14 +474,14 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
       body: Stack(
         children: <Widget>[
           // Background Image
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/Blue background wallpaper by MaDBut4er - Download on ZEDGE™ _ da92.png'), // Replace with your image path
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          // Container(
+          //   decoration: BoxDecoration(
+          //     image: DecorationImage(
+          //       image: AssetImage('assets/Blue background wallpaper by MaDBut4er - Download on ZEDGE™ _ da92.png'), // Replace with your image path
+          //       fit: BoxFit.cover,
+          //     ),
+          //   ),
+          // ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

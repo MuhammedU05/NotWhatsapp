@@ -1,56 +1,57 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:not_whatsapp/Settingspage.dart';
-import 'package:not_whatsapp/chat_screen.dart';
 import 'package:not_whatsapp/mainui.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'Login_Page.dart';
 
 class addProfile extends StatefulWidget {
   const addProfile({Key? key}) : super(key: key);
 
   @override
-  State<addProfile> createState() => _addProfileState();
+  _addProfileState createState() => _addProfileState();
 }
 
 class _addProfileState extends State<addProfile> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController aboutController = TextEditingController(); // New TextEditingController for About
-  String name = "";
-  String about = ""; // New variable for About
+  final User? user = FirebaseAuth.instance.currentUser;
+  final CollectionReference users =
+      FirebaseFirestore.instance.collection('Users');
+  TextEditingController _userName = TextEditingController();
+  TextEditingController _userBio = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    _loadName();
-  }
+  // Future<void> addUserDetails(String name, String bio) async {
+  //   print(user!.uid);
+  //   if (name.isEmpty) {
+  //     print('Name is required');
+  //     // Display an error message to the user or handle it in an appropriate way
+  //     return;
+  //   }
 
-  Future<void> _loadName() async {
-    final prefs = await SharedPreferences.getInstance();
-    final savedName = prefs.getString('name');
-    final savedAbout = prefs.getString('about'); // Load the saved About
-    if (savedName != null) {
-      setState(() {
-        name = savedName;
-        nameController.text = name;
-      });
-    }
-    if (savedAbout != null) {
-      setState(() {
-        about = savedAbout;
-        aboutController.text = about;
-      });
-    }
-  }
-
-  Future<void> _saveName(String newName) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('name', newName);
-  }
-
-  Future<void> _saveAbout(String newAbout) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('about', newAbout); // Save the About
-  }
+  //   try {
+  //     await FirebaseFirestore.instance
+  //         .collection('Users')
+  //         .add({})
+  //         .then((value) => print('Data added'))
+  //         .catchError((error) => print('Failed to add data: $error'));
+  //     // FirebaseFirestore.instance.collection('Users').doc().
+  //     // await users.doc(user!.uid).set({
+  //     //   'UUID': user!.uid,
+  //     //   'Name': name,
+  //     //   'Email': user?.email,
+  //     //   'Number': user?.phoneNumber,
+  //     //   'Bio': bio,
+  //     //   // Add more fields as per your requirement
+  //     // });
+  //     print('User Details Added');
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => const MainApp()),
+  //     );
+  //   } catch (e) {
+  //     print('Failed to add user details: $e');
+  //     // Display an error message to the user or handle it in an appropriate way
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +82,7 @@ class _addProfileState extends State<addProfile> {
                     decoration: BoxDecoration(
                       color: Colors.green,
                       borderRadius: BorderRadius.circular(150),
+                      //more than 50% of width makes circle
                     ),
                     child: IconButton(
                       icon: Icon(
@@ -96,52 +98,49 @@ class _addProfileState extends State<addProfile> {
               height: 30,
             ),
             TextField(
-              controller: nameController,
+              controller: _userName,
               decoration: InputDecoration(
                 border: UnderlineInputBorder(),
                 icon: Icon(Icons.person),
                 hintText: 'Enter your Name',
               ),
-              onChanged: (newName) {
-                setState(() {
-                  name = newName;
-                });
-              },
             ),
             SizedBox(height: 23),
             TextField(
-              controller: aboutController,
+              controller: _userBio,
               decoration: InputDecoration(
                 border: UnderlineInputBorder(),
                 icon: Icon(Icons.info_outline),
                 hintText: 'About',
               ),
-              onChanged: (newAbout) {
-                setState(() {
-                  about = newAbout;
-                });
-              },
             ),
             SizedBox(height: 23),
+            Text(user!.phoneNumber.toString(),style: TextStyle(fontSize: 18,fontWeight:FontWeight.w400 ),),
+            SizedBox(height: 23),
             ElevatedButton(
-  onPressed: () async {
-    await _saveName(name); // Save the name
-    await _saveAbout(about); // Save the About
-    await Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => MainApp(name: '',), // Navigate to the main app
-      ),
-    );
-  },
-  child: Text('Save'),
-),
-
-
-
-
-          ]
-      ),
+              onPressed: () {
+                String userName = _userName.text;
+                String userBio = _userBio.text;
+                try {
+                  FirebaseFirestore.instance.collection('Users').add({
+                    'name': userName,
+                    'Bio': userBio,
+                    'Uuid': user!.uid,
+                    'Ph No': user!.phoneNumber
+                  });
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const MainApp()));
+                } on Exception catch (e) {
+                  print('The Error is : $e');
+                }
+                // addUserDetails(userName, userBio);
+              },
+              child: Text(
+                'Save',
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
