@@ -400,6 +400,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
   String otp = '';
   bool phVerified = false;
   get index => -1;
+
 //   final User? user = FirebaseAuth.instance.currentUser;
 //   final CollectionReference users = FirebaseFirestore.instance.collection('users');
 //   Future<void> addUserDetails(String Name,String Bio,String phoneNumber) {
@@ -533,9 +534,9 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
           Center(
             child: Container(
               color: Colors.transparent,
-            width: 300,
-            margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
-            padding: EdgeInsets.all(16),
+              width: 300,
+              margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+              padding: EdgeInsets.all(16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -555,7 +556,10 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: verifyPhoneNumber,
+                    onPressed: () {
+                      verifyPhoneNumber;
+                      setLoggedInStatus(true);
+                    },
                     child: Text('Send OTP'),
                   ),
                   SizedBox(height: 20),
