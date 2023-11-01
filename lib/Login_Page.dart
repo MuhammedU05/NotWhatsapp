@@ -13,6 +13,7 @@ class EmailSignInScreen extends StatefulWidget {
 class _EmailSignInScreenState extends State<EmailSignInScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  User user = FirebaseAuth.instance.currentUser!;
 
   Future<void> signInWithEmailAndPassword() async {
     try {
@@ -20,7 +21,6 @@ class _EmailSignInScreenState extends State<EmailSignInScreen> {
           .signInWithEmailAndPassword(
               email: emailController.text, password: passwordController.text);
       if (userCredential.user != null) {
-        // Navigate to your desired screen upon successful authentication
         print('Successfully signed in with Email and Password');
         setLoggedInStatus(true);
         Navigator.push(
@@ -75,9 +75,6 @@ class _EmailSignInScreenState extends State<EmailSignInScreen> {
                   TextField(
                     keyboardType: TextInputType.emailAddress,
                     controller: emailController,
-                    onChanged: (value) {
-                      setState(() {});
-                    },
                     decoration: const InputDecoration(
                       hintText: 'Enter Email',
                       border: OutlineInputBorder(),
@@ -89,9 +86,6 @@ class _EmailSignInScreenState extends State<EmailSignInScreen> {
                   TextField(
                     obscureText: true,
                     controller: passwordController,
-                    onChanged: (value) {
-                      setState(() {});
-                    },
                     decoration: const InputDecoration(
                       hintText: 'Enter Password',
                       border: OutlineInputBorder(),
@@ -136,6 +130,7 @@ class CreateAccountScreen extends StatefulWidget {
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  User user = FirebaseAuth.instance.currentUser!;
 
   Future<void> createAccount() async {
     try {
@@ -145,11 +140,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       if (userCredential.user != null) {
         // Navigate to your desired screen upon successful account creation
         await userCredential.user!.sendEmailVerification();
-        print('Account created successfully');
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const EmailSignInScreen()),
-        );
+        setState(() {
+          if (user.emailVerified) {
+            print('Account created successfully');
+          } else {
+            print('mail not verified');
+          }
+        });
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -224,6 +221,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     style: const ButtonStyle(),
                     onPressed: () {
                       // signInWithEmailAndPassword();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const EmailSignInScreen()),
+                      );
                       createAccount();
                     },
                     child: const Text('Submit'),
