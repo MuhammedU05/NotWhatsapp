@@ -16,7 +16,7 @@ class _addProfileState extends State<addProfile> {
   final User? fireBaseUser = FirebaseAuth.instance.currentUser;
   final CollectionReference users =
       FirebaseFirestore.instance.collection('Users');
-  late Stream<DocumentSnapshot> _stream;
+  // late Stream<DocumentSnapshot> _stream;
   TextEditingController _userName = TextEditingController();
   TextEditingController _userBio = TextEditingController();
 
@@ -133,7 +133,7 @@ class _addProfileState extends State<addProfile> {
                           'name': userName,
                           'Bio': userBio,
                           'Uuid': fireBaseUser!.uid,
-                          'Ph No': fireBaseUser!.phoneNumber
+                          'PhNo': fireBaseUser!.phoneNumber
                         });
                         Navigator.push(
                             context,
