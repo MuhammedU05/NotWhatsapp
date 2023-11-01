@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:not_whatsapp/Login_Page.dart';
@@ -16,6 +17,30 @@ class Settingpage extends StatefulWidget {
 }
 
 class _SettingpageState extends State<Settingpage> {
+  late String _name = ''; // Initialize the name variable
+  late String _bio = ''; // Initialize the name variable
+  Future<void> fetchData() async {
+  final DocumentSnapshot snapshot = await FirebaseFirestore.instance
+      .collection('Users')
+      .doc(user.email) // Replace with your Uuid
+      .get();
+  if (snapshot.exists) {
+    Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
+    if (data != null) {
+      setState(() {
+        _name = data['name']; // Set the fetched name
+        _bio = data['Bio'];
+      });
+    }
+  }
+}
+
+  @override
+  void initState() {
+    fetchData();
+    super.initState();
+  }
+  User user = FirebaseAuth.instance.currentUser!;
   final CollectionReference users =
       FirebaseFirestore.instance.collection('Users');
   @override
@@ -49,8 +74,8 @@ class _SettingpageState extends State<Settingpage> {
                   child: Text(''), // Display the user's name
                 ),
               ),
-              title: Text(''),
-              subtitle: Text('jdc'),
+              title: Text(_name),
+              subtitle: Text(_bio),
             ),
             ListTile(
               onTap: () {},

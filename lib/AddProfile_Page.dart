@@ -2,23 +2,50 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:not_whatsapp/mainui.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-// import 'Login_Page.dart';
 
 class addProfile extends StatefulWidget {
   const addProfile({Key? key}) : super(key: key);
 
   @override
-  _addProfileState createState() => _addProfileState();
+  _AddProfileState createState() => _AddProfileState();
 }
 
-class _addProfileState extends State<addProfile> {
-  final User? fireBaseUser = FirebaseAuth.instance.currentUser;
-  final CollectionReference users =
-      FirebaseFirestore.instance.collection('Users');
-  // late Stream<DocumentSnapshot> _stream;
+class _AddProfileState extends State<addProfile> {
+  final User? firebaseUser = FirebaseAuth.instance.currentUser;
+  final CollectionReference users = FirebaseFirestore.instance.collection('Users');
   TextEditingController _userName = TextEditingController();
   TextEditingController _userBio = TextEditingController();
+
+  void addUserDetails(String userName, String userBio) {
+    try {
+      users.doc(firebaseUser!.email).set({
+        'name': userName,
+        'Bio': userBio,
+        'Uuid': firebaseUser!.uid,
+        'Email': firebaseUser!.email
+      }).then((_) {
+        print('User details added successfully');
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const MainApp()));
+      }).catchError((error) {
+        print('Failed to add user details: $error');
+        // Handle the error accordingly
+      });
+    } on FirebaseException catch (e) {
+      print('Firebase Exception: $e');
+      // Handle the Firebase exceptions
+    } catch (e) {
+      print('Error: $e');
+      // Handle other exceptions
+    }
+  }
+
+  //   @override
+  // void initState() {
+  //   super.initState();
+  //   user = FirebaseAuth.instance.currentUser!;
+  //   usernameController.text = user.displayName ?? ''; // Set initial value of the TextField
+  // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +110,7 @@ class _addProfileState extends State<addProfile> {
             ),
             SizedBox(height: 23),
             Text(
-              fireBaseUser!.email.toString(),
+              firebaseUser!.email.toString(),
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
             ),
             SizedBox(height: 23),
@@ -94,12 +121,12 @@ class _addProfileState extends State<addProfile> {
                 try {
                   FirebaseFirestore.instance
                       .collection('Users')
-                      .doc(fireBaseUser!.uid)
+                      .doc(firebaseUser!.email)
                       .set({
                     'name': userName,
                     'Bio': userBio,
-                    'Uuid': fireBaseUser!.uid,
-                    'Email': fireBaseUser!.email
+                    'Uuid': firebaseUser!.uid,
+                    'Email': firebaseUser!.email
                   });
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const MainApp()));

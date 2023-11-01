@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/Users/uamuh/Desktop/Flutter/Whatsapp Clone/not_whatsapp/windows"
+    "cmake.sourceDirectory": "C:/Users/uamuh/Desktop/Flutter/Whatsapp Clone/not_whatsapp/windows",
+    "git.ignoreLimitWarning": true
 }
