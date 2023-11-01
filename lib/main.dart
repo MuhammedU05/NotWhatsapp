@@ -43,10 +43,10 @@
 
 // import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:not_whatsapp/Login_Page.dart';
 import 'package:not_whatsapp/firebase_options.dart';
 import 'package:not_whatsapp/mainui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'Login_Page.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 
@@ -72,7 +72,7 @@ void main() async {
     runApp(
       MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: PhoneAuthScreen(), // Replace this with your login screen widget
+        home: EmailSignInScreen(), // Replace this with your login screen widget
       ),
     );
   }

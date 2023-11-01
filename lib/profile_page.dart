@@ -1,9 +1,6 @@
-// ignore_for_file: camel_case_types
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'dart:math' as math;
 import 'main.dart';
 
 class profilePage extends StatefulWidget {
@@ -17,17 +14,6 @@ class _profilePageState extends State<profilePage> {
   late String _name = ''; // Initialize the name variable
   late String _phno = ''; // Initialize the name variable
   final User? fireBaseUser = FirebaseAuth.instance.currentUser;
-  // Future<void> fetchData() async {
-  //   // final Future<QuerySnapshot<Map<String, dynamic>>> _uid = FirebaseFirestore.instance.collection('Users').get();
-  //   final DocumentSnapshot snapshot = await FirebaseFirestore.instance
-  //       .collection('Users')
-  //       .doc('ynLPF0ryeGSKOyEcbCsulbDi70c2') // Replace with your Uuid
-  //       .get();
-  //   setState(() {
-  //     _name = snapshot['name']; // Set the fetched name
-  //     _phno = snapshot['PhNo'];
-  //   });
-  // }
 
 Future<void> fetchData() async {
   final DocumentSnapshot snapshot = await FirebaseFirestore.instance

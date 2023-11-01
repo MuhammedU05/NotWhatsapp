@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:not_whatsapp/Login_Page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
-import 'Login_Page.dart';
 import 'main.dart';
 
 class Settingpage extends StatefulWidget {
@@ -165,7 +165,7 @@ class _SettingpageState extends State<Settingpage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const PhoneAuthScreen()));
+                        builder: (context) => const EmailSignInScreen()));
               },
             ))
           ],
