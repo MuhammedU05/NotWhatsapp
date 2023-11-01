@@ -377,12 +377,15 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:not_whatsapp/AddProfile_Page.dart';
 import 'package:not_whatsapp/Settingspage.dart';
+import 'package:not_whatsapp/main.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'main.dart';
 // import 'package:not_whatsapp/main.dart';
 // import 'package:permission_handler/permission_handler.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
-class PhoneAuthScreen extends StatefulWidget {
+
+class PhoneAuthScreen extends StatefulWidget  {
   const PhoneAuthScreen({super.key});
 
   @override
@@ -452,12 +455,12 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
             phVerified = false;
           });
           print(
-              '\n\nPhone number verification failed. Code: ${e.code}. Message: ${e.message}');
+              '\n\nPhone number verification failed. Code: ${e.code}. Message: ${e.message}\n\n');
         },
         codeSent: (String verificationId, int? resendToken) {
           setState(() {
-            _verificationId = verificationId;
             phVerified = true;
+            // phVerified = _verificationId == verificationId ? true : false;
           });
         },
         codeAutoRetrievalTimeout: (String verificationId) {
@@ -527,7 +530,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 25),
             child: Text(
-              'Login panel',
+              'Login',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             ),
           ),
@@ -551,16 +554,34 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                       // print(_phoneNumber);
                     },
                     decoration: InputDecoration(
-                      hintText: 'Enter phone number',
+                      hintText: 'Enter Email',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  TextField(
+                    // controller: PhoneNumber,
+                    onChanged: (value) {
+                      setState(() {
+                        // _phoneNumber = value;
+                        // myPhoneNumber = value;
+                      });
+                      // print(_phoneNumber);
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Enter Password',
                       border: OutlineInputBorder(),
                     ),
                   ),
                   ElevatedButton(
+                    style: ButtonStyle(
+                      // backgroundColor:  ,
+                    ),
                     onPressed: () {
-                      verifyPhoneNumber;
-                      setLoggedInStatus(true);
+                      // verifyPhoneNumber;
+                      // setLoggedInStatus(true);
                     },
-                    child: Text('Send OTP'),
+                    child: Text('Submit'),
                   ),
                   SizedBox(height: 20),
                   if (phVerified == true)
