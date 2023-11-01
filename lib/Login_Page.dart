@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:not_whatsapp/mainui.dart';
+import 'package:not_whatsapp/AddProfile_Page.dart';
+import 'package:not_whatsapp/Settingspage.dart';
 
 class EmailSignInScreen extends StatefulWidget {
   const EmailSignInScreen({Key? key}) : super(key: key);
@@ -21,9 +22,10 @@ class _EmailSignInScreenState extends State<EmailSignInScreen> {
       if (userCredential.user != null) {
         // Navigate to your desired screen upon successful authentication
         print('Successfully signed in with Email and Password');
+        setLoggedInStatus(true);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const MainApp()),
+          MaterialPageRoute(builder: (context) => const addProfile()),
         );
       }
     } on FirebaseAuthException catch (e) {
@@ -142,6 +144,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
               email: emailController.text, password: passwordController.text);
       if (userCredential.user != null) {
         // Navigate to your desired screen upon successful account creation
+        await userCredential.user!.sendEmailVerification();
         print('Account created successfully');
         Navigator.push(
           context,
@@ -178,7 +181,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           const Padding(
             padding: EdgeInsets.only(top: 25),
             child: Text(
-              'Login',
+              'Create Account',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             ),
           ),

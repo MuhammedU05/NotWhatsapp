@@ -1,9 +1,4 @@
-// ignore_for_file: avoid_print
-
-// import 'package:auto_size_text/auto_size_text.dart';
 import 'package:not_whatsapp/Settingspage.dart';
-// import 'package:not_whatsapp/profilepicpage.dart';
-
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
@@ -12,7 +7,7 @@ int addChatMessage = 0;
 int number = 0;
 
 class MainApp extends StatefulWidget {
-    const MainApp({super.key});
+  const MainApp({super.key});
 
   @override
   State<MainApp> createState() => _MainAppState();
@@ -58,27 +53,13 @@ class _MainAppState extends State<MainApp> {
                         icon: const Icon(Icons.search),
                         color: Colors.white,
                       )),
-                  PopupMenuButton(
-                    iconSize: 35,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    itemBuilder: (context) {
-                      return [
-                        // In this case, we need 5 popupmenuItems one for each option.
-                        const PopupMenuItem(child: Text('New Group')),
-                        // const PopupMenuItem(child: Text('New Broadcast')),
-                        // const PopupMenuItem(child: Text('Linked Devices')),
-                        // const PopupMenuItem(child: Text('Starred Messages')),
-                        PopupMenuItem(
-                          child: const Text('Settings'),
-                          onTap: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (context) => const Settingpage())),
-                        ),
-                      ];
-                    },
-                  ),
+                  IconButton(
+                    padding: EdgeInsets.only(right: 10),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const Settingpage()));
+                      },
+                      icon: Icon(Icons.settings,size: 35,))
                 ],
               )
             ],
@@ -87,9 +68,12 @@ class _MainAppState extends State<MainApp> {
               indicatorWeight: 4,
               tabAlignment: TabAlignment.fill,
               tabs: [
-                Tab(child: Icon( Icons.camera_alt,
-                  color: Color.fromRGBO(255, 255, 255, 1),
-                  size: 35,),
+                Tab(
+                  child: Icon(
+                    Icons.camera_alt,
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                    size: 35,
+                  ),
                 ),
                 Tab(
                     child: Text(
@@ -176,7 +160,9 @@ class _MainAppState extends State<MainApp> {
                                                     // ignore: non_constant_identifier_names
                                                     (BuildContextContext) =>
                                                         // const myChatScreen()
-                                                        const ChatScreen(name: '',)));
+                                                        const ChatScreen(
+                                                          name: '',
+                                                        )));
                                       },
                                     ),
                                   ],
