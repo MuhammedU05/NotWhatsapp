@@ -69,45 +69,72 @@ class AuthPage extends StatelessWidget {
                         ),
                       ])),
               Utils.verticalSpace(10),
-              SizedBox(
-                width: size.width * 0.7,
-                child: DropdownButton<String>(
-                    hint: Text("Bangladesh"),
-                    isExpanded: true,
-                    alignment: Alignment.center,
-                    items: [
-                      DropdownMenuItem(
-                        child: Text("Bangladesh"),
-                        value: "bangladesh",
-                      )
+              Expanded(
+                  child: Container(
+                width: 150,
+                height: 150,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                child: Image.asset(
+                  'assets/pngwing.com.png',
+                ),
+              )),
+              Center(
+                child: SizedBox(
+                  width: size.width * 0.7,
+                  child: Row(
+                    children: [
+                      // Expanded(
+                      //     child: TextField(
+                      //   decoration: InputDecoration(
+                      //     contentPadding: EdgeInsets.zero,
+                      //     // prefixIcon: Icon(
+                      //     //   Icons.add,
+                      //     //   size: 20,
+                      //     // ),
+                      //     hintText: " +91",
+                      //   ),
+                      // )),
+                      Expanded(
+                          child: SizedBox(
+                        width: size.width * 0.7,
+                        child: DropdownButton<String>(
+                            hint: Text("+91"),
+                            isExpanded: true,
+                            alignment: Alignment.center,
+                            items: [
+                              DropdownMenuItem(
+                                child: Text("+91"),
+                                value: "+91",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("+971"),
+                                value: "+971",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("+966"),
+                                value: "+966",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("+974"),
+                                value: "+974",
+                              ),
+                            ],
+                            onChanged: (v) {}),
+                      )),
+                      Utils.horizontalSpace(10),
+                      Expanded(
+                          flex: 3,
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              hintText: KStrings.phontHint,
+                            ),
+                          ))
                     ],
-                    onChanged: (v) {}),
-              ),
-              SizedBox(
-                width: size.width * 0.7,
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: TextField(
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.zero,
-                        // prefixIcon: Icon(
-                        //   Icons.add,
-                        //   size: 20,
-                        // ),
-                        hintText: "+880",
-                      ),
-                    )),
-                    Utils.horizontalSpace(10),
-                    Expanded(
-                        flex: 3,
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            hintText: KStrings.phontHint,
-                          ),
-                        ))
-                  ],
+                  ),
                 ),
               ),
               Utils.verticalSpace(20),

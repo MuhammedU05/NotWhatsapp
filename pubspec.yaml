@@ -27,6 +27,7 @@ dependencies:
   grouped_list: ^5.1.2
   path_drawing: ^1.0.1
   dotted_border: ^2.1.0
+  google_fonts: ^6.1.0
   
     # overlay_support: latest_version
 
@@ -39,3 +40,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/images/
+    - assets/icons/

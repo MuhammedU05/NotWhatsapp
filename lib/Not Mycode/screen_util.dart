@@ -17,13 +17,14 @@ class ScreenUtil {
 
   /// UI设计中手机尺寸 , dp
   /// Size of the phone in UI Design , dp
-  late Size _uiSize;
+  late Size _uiSize = Size(360, 690);
+  
 
   ///屏幕方向
   late Orientation _orientation;
 
-  late bool _minTextAdapt;
-  late MediaQueryData _data;
+  late bool _minTextAdapt = false;
+  late MediaQueryData _data = MediaQueryData();
   late bool _splitScreenMode;
   FontSizeResolver? fontSizeResolver;
 
