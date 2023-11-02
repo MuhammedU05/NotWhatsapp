@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:not_whatsapp/AddProfile_Page.dart';
-import 'package:not_whatsapp/Settingspage.dart';
+// import 'package:not_whatsapp/AddProfile_Page.dart';
 
 class EmailSignInScreen extends StatefulWidget {
   const EmailSignInScreen({Key? key}) : super(key: key);
@@ -13,19 +12,17 @@ class EmailSignInScreen extends StatefulWidget {
 class _EmailSignInScreenState extends State<EmailSignInScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  User user = FirebaseAuth.instance.currentUser!;
 
-  Future<void> signInWithEmailAndPassword() async {
+  Future<void> signInWithEmailAndPassword(BuildContext context) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
               email: emailController.text, password: passwordController.text);
       if (userCredential.user != null) {
         print('Successfully signed in with Email and Password');
-        setLoggedInStatus(true);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const addProfile()),
+          MaterialPageRoute(builder: (context) => const AddProfile()),
         );
       }
     } on FirebaseAuthException catch (e) {
@@ -92,9 +89,12 @@ class _EmailSignInScreenState extends State<EmailSignInScreen> {
                     ),
                   ),
                   TextButton(
-                    style: const ButtonStyle(),
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      primary: Colors.white,
+                    ),
                     onPressed: () {
-                      signInWithEmailAndPassword();
+                      signInWithEmailAndPassword(context);
                     },
                     child: const Text('Submit'),
                   ),
@@ -104,8 +104,7 @@ class _EmailSignInScreenState extends State<EmailSignInScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  const CreateAccountScreen()));
+                              builder: (context) => const CreateAccountScreen()));
                     },
                     child: const Text('Create New Account'),
                   ),
@@ -123,30 +122,25 @@ class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _CreateAccountScreenState createState() => _CreateAccountScreenState();
 }
 
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  User user = FirebaseAuth.instance.currentUser!;
 
-  Future<void> createAccount() async {
+  Future<void> createAccount(BuildContext context) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: emailController.text, password: passwordController.text);
       if (userCredential.user != null) {
-        // Navigate to your desired screen upon successful account creation
         await userCredential.user!.sendEmailVerification();
-        setState(() {
-          if (user.emailVerified) {
-            print('Account created successfully');
-          } else {
-            print('mail not verified');
-          }
-        });
+        if (userCredential.user!.emailVerified) {
+          print('Account created successfully');
+        } else {
+          print('Email not verified');
+        }
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -218,15 +212,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     ),
                   ),
                   TextButton(
-                    style: const ButtonStyle(),
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      primary: Colors.white,
+                    ),
                     onPressed: () {
-                      // signInWithEmailAndPassword();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const EmailSignInScreen()),
-                      );
-                      createAccount();
+                      createAccount(context);
                     },
                     child: const Text('Submit'),
                   ),
@@ -245,6 +236,22 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class AddProfile extends StatelessWidget {
+  const AddProfile({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Add Profile'),
+      ),
+      body: const Center(
+        child: Text('Add profile page'),
       ),
     );
   }

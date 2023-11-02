@@ -1,5 +1,5 @@
-import 'package:not_whatsapp/Settingspage.dart';
-import 'main.dart';
+import 'Settingspage.dart';
+import 'package:not_whatsapp/main.dart';
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
 

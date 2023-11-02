@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:not_whatsapp/Login_Page.dart';
+import 'Login_Page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-import 'main.dart';
+import 'package:not_whatsapp/main.dart';
 
 class Settingpage extends StatefulWidget {
   // final String? name; // Add the name parameter
